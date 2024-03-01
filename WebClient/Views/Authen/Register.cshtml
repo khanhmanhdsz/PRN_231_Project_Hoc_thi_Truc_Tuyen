@@ -1,0 +1,58 @@
+﻿@using ViewModels.Authens
+@using WebClient.Helpers
+
+<div class="bg-clubs">
+    <section class="register min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                    <div class="d-flex justify-content-center py-4">
+                        <a asp-controller="Home" asp-action="Index" class=" d-flex align-items-center ">
+                            <img class="logo-bigger" src="/assets/images/logo.png" alt="">
+                        </a>
+                    </div><!-- End Logo -->
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="pt-2 pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4 fw-bold">Register</h5>
+                                <p class="text-center small">Creating your new account is the first step to unlocking a world of possibilities</p>
+                            </div>
+
+                            <form id="login-form" method="POST" asp-controller="Authen" asp-action="Register" class="row">
+                                <div class="col-12 mb-2">
+                                    <span class="fw-bold">Fullname</span>
+                                    <input type="text" name="email" placeholder="Enter your fullname" class="form-control" />
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <span class="fw-bold">Email</span>
+                                    <input type="text" name="email" placeholder="Enter your email" class="form-control" />
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <span class="fw-bold">Password</span>
+                                    <input type="password" name="email" placeholder="Enter your password" class="form-control" />
+                                </div>
+                                <div class="col-12 mt-2 mb-2">
+                                    <button id="btn-google_login" class="btn btn-primary bg-orange text-white w-100" type="submit">
+                                        <i class="bi bi-arrow-right"></i>
+                                        <span>Register</span>
+                                    </button>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Already have an account?</span>
+                                    <a asp-controller="Authen" asp-action="SignIn" class="link-underline">
+                                        Sign in
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
