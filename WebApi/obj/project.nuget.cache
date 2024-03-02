@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q91XX0Kgfz9w6/KKZoWk4vH6YdCMkXlfjO8yIzhvCmRFOn7CYHCAQ7CwQm98k0q6hmaTjXUn71tXaRFajaTS0w==",
+  "dgSpecHash": "9axG1ay8fWfP3amsUlM1tNifVsSzRclKck+6TeRmw9hhDQ9/liIeQ+28Ruzln76CufEeoeQTL7MGgw5H+0lZkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",

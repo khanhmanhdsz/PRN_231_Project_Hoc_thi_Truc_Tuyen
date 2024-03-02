@@ -20,8 +20,8 @@ namespace DataAccess.Models
         public DateTime CreatedDate { get; set; }
         public int SubjectId { get; set; }
         #region Relationship
-        public virtual Subject Subject { get; set; }
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual Subject? Subject { get; set; }
+        public virtual ICollection<Question>? Questions { get; set; }
         #endregion
     }
 }

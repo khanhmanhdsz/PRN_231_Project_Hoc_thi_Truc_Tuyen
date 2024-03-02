@@ -1,0 +1,74 @@
+﻿@using ViewModels.Quizzes
+@using ViewModels.Subjects
+@model QuizVM
+@{
+    List<SubjectVM> subjects = ViewData["Subjects"] as List<SubjectVM>;
+}
+<div class="pagetitle">
+    <h1>Create New Quiz</h1>
+</div>
+<div class="card">
+    <div class="p-3">
+        <form method="POST" asp-area="Admin" asp-controller="Quiz" asp-action="Create" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label class="col-sm-12 fw-bold">Quiz Title<span class="ms-1 text-red">*</span></label>
+                <div class="col-sm-12">
+                    <input asp-for="Title" name="Title" type="text" class="form-control" placeholder="Enter quiz title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-12 fw-bold">Choose subject<span class="ms-1 text-red">*</span></label>
+                <div class="col-sm-12">
+                    <select asp-for="SubjectId" name="SubjectId" class="selectpicker show-tick form-control" aria-label="Default select example">
+                        @if (subjects != null)
+                        {
+                            @foreach (var subject in subjects)
+                            {
+                                <option value="@subject.SubjectId">@subject.SubjectName</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="">No subjects available</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-12 fw-bold">Duration (minutes)<span class="ms-1 text-red">*</span></label>
+                <div class="col-sm-12">
+                    <input asp-for="Duration" name="Duration" min="10" max="180" value="10" type="number" class="form-control" placeholder="Enter duration" />
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-12 fw-bold">Quiz Description<span class="ms-1 text-red">*</span></label>
+                <div class="col-sm-12">
+                    <textarea asp-for="Description" name="Description" type="text" class="form-control" placeholder="Enter quiz description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-12 d-flex flex-row justify-content-start">
+                    <a asp-area="Admin" asp-controller="Quiz" asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i>
+                        <span>Return</span>
+                    </a>
+                    <button onclick="showSpinner();" type="submit" class="btn btn-primary mx-2">
+                        <span id="spinner" class="visually-hidden">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="visually-hidden">Loading...</span>
+                            <span>Processing</span>
+                        </span>
+                        <span id="btn-content">
+                            <i class="bi bi-floppy"></i>
+                            <span>Save</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

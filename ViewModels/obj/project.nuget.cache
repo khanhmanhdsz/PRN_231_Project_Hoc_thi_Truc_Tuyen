@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4cMqYRaKCbw9p282ScT+8vDW26LO6e6N7qYz2Gm6Zxmso6D6OLHGauxH+Y1YHq8nFQJpguef1pOK/cK2Dyb1tg==",
+  "dgSpecHash": "YMhxUCljQvgcLU+enjWdBOSPYHoCC+sn+53oowosotFTNciHrJMZzIiSdT9ym5yPsf7W3kAR9M0hpLoz7K+HdQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\ViewModels.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\ViewModels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.21\\microsoft.aspnetcore.cryptography.internal.6.0.21.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.21\\microsoft.aspnetcore.cryptography.keyderivation.6.0.21.nupkg.sha512",

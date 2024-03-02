@@ -5,7 +5,6 @@ using Repositories.Quizzes;
 using Repositories.QuizHistories;
 using Repositories.Questions;
 using Repositories.QuestionHistories;
-using Repositories.Answers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -76,7 +75,6 @@ builder.Services.AddTransient<IAuthenRepository, AuthenRepository>();
 builder.Services.AddTransient<ISubjectRepository, SubjectRepository>();
 builder.Services.AddTransient<IQuizRepository, QuizRepository>();
 builder.Services.AddTransient<IQuestionRepository, QuestionRepository>();
-builder.Services.AddTransient<IAnswerRepository, AnswerRepository>();
 builder.Services.AddTransient<IQuizHistoryRepository, QuizHistoryRepository>();
 builder.Services.AddTransient<IQuestionHistoryRepository, QuesionHistoryRepository>();
 

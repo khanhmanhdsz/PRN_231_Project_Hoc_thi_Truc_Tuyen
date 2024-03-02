@@ -40,6 +40,7 @@ ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 // Services
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<GoogleDriveService>();
+builder.Services.AddScoped<ExcelService>();
 // Filters
 //builder.Services.AddScoped<PublicPageFilter>();
 
@@ -63,39 +64,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler("/Error");
-app.UseStatusCodePagesWithRedirects("/Error/Error404");
-
-
-//app.Use(async (context, next) =>
-//{
-//    context.Response.OnStarting(state =>
-//    {
-//        // Remove Server header from HTTP response headers
-//        context.Response.Headers.Remove("Server");
-
-//        // Remove X-Powered-By header from HTTP response headers
-//        context.Response.Headers.Remove("X-Powered-By");
-
-//        return Task.CompletedTask;
-//    }, context);
-
-//    // Add the X-Frame-Options header to HTTP response headers.
-//    context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
-
-//    // Add the X-Content-Type-Options header to HTTP response headers.
-//    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-
-//    // Set Content-Security-Policy header
-//    context.Response.Headers.Add("Content-Security-Policy", "");
-
-
-//    // Set Permissions-Policy header
-//    context.Response.Headers.Add("Permissions-Policy", "geolocation=()");
-
-
-//    await next();
-//});
-
+//app.UseStatusCodePagesWithRedirects("/Error/Error404");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

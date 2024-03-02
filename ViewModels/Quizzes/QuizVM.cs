@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Questions;
+using ViewModels.Subjects;
 
 namespace ViewModels.Quizzes
 {
     public class QuizVM
     {
-        [Key]
-        public int QuizId { get; set; }
+        public int? QuizId { get; set; }
 
         [Required(ErrorMessage = "* Please enter quiz title")]
         [StringLength(100)]
@@ -23,9 +24,9 @@ namespace ViewModels.Quizzes
 
         public int Duration { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-        public int SubjectId { get; set; }
-        public Subject Subject { get; set; }
-        public List<Question> Questions { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? SubjectId { get; set; }
+        public SubjectVM? Subject { get; set; }
+        public List<QuestionVM>? Questions { get; set; }
     }
 }

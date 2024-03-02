@@ -17,15 +17,11 @@ namespace WebApi.Controllers.Admin
     public class AccountController : ControllerBase
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
 
-
-        public AccountController(IAccountRepository accountRepository,
-            IConfiguration configuration,IMapper mapper)
+        public AccountController(IAccountRepository accountRepository, IMapper mapper)
         {
             _accountRepository = accountRepository;
-            _configuration = configuration;
             _mapper = mapper;
         }
 
@@ -40,36 +36,36 @@ namespace WebApi.Controllers.Admin
         [HttpGet]
         public async Task<IActionResult> GetAccountByEmail([FromQuery] string email)
         {
-            //Get public service paging request
             AccountVM account = await _accountRepository.GetAccountByEmail(email);
             return Ok(account);
         }
 
-        /// <summary>
-        /// Create account manual by SuperAdmin
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateAccountManual([FromBody] Account request)
+        public async Task<IActionResult> CreateAccountManual([FromBody] AccountVM request)
         {
             try
             {
-                ResponseVM response = await _accountRepository.CreateAccountManualAsync(request, new List<string>() { RoleConstants.Student });
-
-                if (response == null)
-                {
-                    throw new Exception("Không nhận được dữ liệu trả về khi tạo mới tài khoản");
-                }
-
-                // check if have unknow error when create account
-                if (!response.Status)
-                {
-                    return Ok(response);
-                }
-
+                var account = _mapper.Map<Account>(request);
+                var roles = new List<string>() { RoleConstants.Student };
+                var response = await _accountRepository.CreateAccountManualAsync(account, roles);
                 return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResponseVM { Status = false, Message = ex.Message });
+            }
 
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAccountManual([FromBody] AccountVM request)
+        {
+            try
+            {
+                var account = _mapper.Map<Account>(request);
+                var roles = new List<string>() { RoleConstants.Student };
+                var response = await _accountRepository.UpdateAccountManualAsync(account);
+                return Ok(response);
             }
             catch (Exception ex)
             {

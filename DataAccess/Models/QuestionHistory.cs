@@ -6,9 +6,10 @@
         public int SelectedAnswerId { get; set; }
         public int QuestionId { get; set; }
         public int QuizHistoryId { get; set; }
+        public bool IsCorrect { get; set; }
         #region Relationship 
-        public virtual QuizHistory QuizHistory { get; set; }
-        public virtual Question Question { get; set; }
+        public virtual QuizHistory? QuizHistory { get; set; }
+        public virtual Question? Question { get; set; }
         #endregion
 
     }

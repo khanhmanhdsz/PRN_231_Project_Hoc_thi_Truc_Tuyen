@@ -7,6 +7,7 @@ using DataAccess.Models;
 using System.Text.RegularExpressions;
 using Core.Constants;
 using ViewModels.Paging;
+using Core.Helpers;
 
 namespace Repositories.Accounts
 {
@@ -143,9 +144,9 @@ namespace Repositories.Accounts
         {
             try
             {
-        
+                var password = PasswordHepler.GenerateAccountPassword(10);
                 // Insert the account into the database
-                var result = await userManager.CreateAsync(account, $"{account.Email}_FCMS_v1");
+                var result = await userManager.CreateAsync(account, password);
 
                 // Check if the account creation was successful
                 if (result.Succeeded)
@@ -157,11 +158,11 @@ namespace Repositories.Accounts
 
                         if (idenResult.Succeeded)
                         {
-                            return new ResponseVM() { Status = true, Message = "Tạo tài khoản thành công" };
+                            return new ResponseVM() { Status = true, Message = "Create account successful!" };
                         }
                         else
                         {
-                            throw new Exception("Không lưu được vào cơ sở dữ liệu");
+                            throw new Exception("Cannot store data to database");
                         }
 
                         // Return true to indicate a successful account creation
@@ -189,7 +190,7 @@ namespace Repositories.Accounts
                 }
                 else
                 {
-                    throw new Exception("Tạo tài khoản thất bại");
+                    throw new Exception("Create account failed");
                 }
 
             }
@@ -220,12 +221,12 @@ namespace Repositories.Accounts
                 // Check if the update was successful
                 if (result.Succeeded)
                 {
-                    return new ResponseVM() { Status = true, Message = "Cập nhật tài khoản thành công" };
+                    return new ResponseVM() { Status = true, Message = "Update account successful" };
 
                 }
                 else
                 {
-                    throw new Exception("Cập nhật tài khoản thất bại");
+                    throw new Exception("Update account failed");
                 }
 
 

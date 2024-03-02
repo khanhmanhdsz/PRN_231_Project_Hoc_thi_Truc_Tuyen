@@ -44,12 +44,11 @@ namespace Repositories.Authen
             try
             {
                 // Find User by Username in database
-                Account? user = await _context.Accounts.SingleOrDefaultAsync(a => a.Email == request.Email
-                && a.IsAccountActive == true);
+                var user = await _context.Accounts.SingleOrDefaultAsync(a => a.Email == request.Email && a.IsAccountActive == true);
 
                 if (user != null)
                 {
-                    var signInResult = await signInManager.PasswordSignInAsync(user, request.Password, isPersistent: false, lockoutOnFailure: false);
+                    var signInResult = await signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
                     if (!signInResult.Succeeded)
                     {
@@ -73,19 +72,7 @@ namespace Repositories.Authen
                         claims.Add(new Claim(ClaimTypes.Role, role));
                     }
 
-                    // create a symmetric key by info configed in appsettings.json
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
-                    // verify the the validation of JWT
-                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                    // Create a new JWT by some info to spicify contend of JWT 
-                    var token = new JwtSecurityToken(configuration["JWT:ValidIssuer"],
-                        configuration["JWT:ValidAudience"],
-                        claims,
-                        expires: DateTime.Now.AddDays(1),
-                        signingCredentials: creds);
-
-                    var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
+                    var accessToken = GenerateJWT(user, claims);
 
                     return new ResponseVM() { Status = true, Message = accessToken };
                 }
@@ -101,39 +88,12 @@ namespace Repositories.Authen
             }
         }
 
-        /// <summary>
-        /// Generate JWT
-        /// </summary>
-        /// <param name="user">Account</param>
-        /// <param name="roles">List roles of current account</param>
-        /// <returns>JWT string that store account infomation</returns>
-        private string GenerateJWT(Account user, List<string> roles)
+        private string GenerateJWT(Account user, List<Claim> claims)
         {
             try
             {
-
-                // create info will stored in JWT, these info will be encode and decode by API application use this JWT
-                List<Claim> claims = new List<Claim>
-                {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.GivenName, $"{user.Fullname}"),
-                new Claim("RoleStr", string.Join(";", roles)),
-            };
-
-                foreach (string role in roles)
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, role));
-                }
-
-
-                // create a symmetric key by info configed in appsettings.json
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
-                // verify the the validation of JWT
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                // Create a new JWT by some info to spicify contend of JWT 
                 var token = new JwtSecurityToken(configuration["JWT:ValidIssuer"],
                     configuration["JWT:ValidAudience"],
                     claims,

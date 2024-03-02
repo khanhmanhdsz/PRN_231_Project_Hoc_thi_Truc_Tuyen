@@ -37,7 +37,6 @@ namespace DataAccess.FcmsContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
-            modelBuilder.ApplyConfiguration(new AnswerConfiguration());
             modelBuilder.ApplyConfiguration(new QuestionConfiguration());
             modelBuilder.ApplyConfiguration(new QuestionHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new QuizConfiguration());
@@ -54,7 +53,6 @@ namespace DataAccess.FcmsContext
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> QuizHistories { get; set; }
         public DbSet<QuestionHistory> QuestionHistories { get; set; }
  

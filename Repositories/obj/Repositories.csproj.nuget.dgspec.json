@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Repositories\\Repositories.csproj": {}
+    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj": {
+    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -156,14 +156,14 @@
         }
       }
     },
-    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Repositories\\Repositories.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Repositories\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -184,14 +184,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj"
+              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj"
               },
-              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\ViewModels.csproj": {
-                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\ViewModels.csproj"
+              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\ViewModels.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\ViewModels.csproj"
               }
             }
           }
@@ -225,14 +225,14 @@
         }
       }
     },
-    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\ViewModels.csproj": {
+    "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\ViewModels.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\ViewModels.csproj",
         "projectName": "ViewModels",
-        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\ViewModels.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\ViewModels.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\ViewModels\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -253,11 +253,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\Core\\Core.csproj"
+              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\Core\\Core.csproj"
               },
-              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\DataAccess\\DataAccess.csproj"
               }
             }
           }

@@ -58,7 +58,7 @@ namespace DataAccess.Migrations
                     SubjectId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SubjectName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -200,10 +200,13 @@ namespace DataAccess.Migrations
                 {
                     QuestionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    QuizId = table.Column<int>(type: "int", nullable: false),
-                    CorrectAnswerId = table.Column<int>(type: "int", nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
+                    CorrectAnswer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AnswerA = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
+                    AnswerB = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
+                    AnswerC = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
+                    AnswerD = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
+                    QuizId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -243,25 +246,6 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Answer",
-                columns: table => new
-                {
-                    AnswerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    QuestionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Answer", x => x.AnswerId);
-                    table.ForeignKey(
-                        name: "FK_Answer_Question_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Question",
-                        principalColumn: "QuestionId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "QuestionHistory",
                 columns: table => new
                 {
@@ -269,7 +253,8 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SelectedAnswerId = table.Column<int>(type: "int", nullable: false),
                     QuestionId = table.Column<int>(type: "int", nullable: false),
-                    QuizHistoryId = table.Column<int>(type: "int", nullable: false)
+                    QuizHistoryId = table.Column<int>(type: "int", nullable: false),
+                    IsCorrect = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,8 +277,8 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), "bcd3f7c2-1bb5-41b6-a38f-718279b331fd", "Admin", "ADMIN" },
-                    { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), "83a2c00b-e4d2-48a9-aa1e-c6c31691930f", "Student", "STUDENT" }
+                    { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), "ddf248d2-4821-4ac0-a2b4-32547f16262c", "Admin", "ADMIN" },
+                    { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), "6f8844c3-6e7d-453d-80a9-0ca5ec9096ae", "Student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -301,8 +286,8 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Fullname", "IsAccountActive", "JoinedDate", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "9f6ef224-1c5e-4557-96c1-ed9686168b9a", "lamnt@gmail.com", true, "Nguyen Thanh Lam", true, new DateTime(2024, 3, 2, 1, 3, 54, 114, DateTimeKind.Local).AddTicks(8431), false, null, "LAMNT@GMAIL.COM", "LAMNT", "AQAAAAEAACcQAAAAEMXsokEOnxN4lKO5wxsQWNMfI1nsblB7X+i+MwTMpMRGHsz5gyOnm730jZaPAy3btQ==", null, false, "ab4de0d3-77fe-47a4-b69b-50f039161190", false, "lamnt" },
-                    { new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"), 0, "345cf78c-7592-4164-9de7-02b6d753e8ec", "admin@gmail.com", true, "Admin", true, new DateTime(2024, 3, 2, 1, 3, 54, 113, DateTimeKind.Local).AddTicks(4838), false, null, "ADMIN@GMAIL.COM", "ICPDPHN", "AQAAAAEAACcQAAAAEBxpwnUNXGw70tgcs61hlZ6RQrKAhkN6FD4UNTjFbD6SHLFopOW1Zs8+ZchPmyFrzA==", null, false, "2d4fe4d7-9cf6-46e7-bc57-37419970fbf2", false, "admin" }
+                    { new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "cdccd99c-aa30-4260-9c76-570f4a8aba8d", "lamnt@gmail.com", true, "Nguyen Thanh Lam", true, new DateTime(2024, 3, 3, 2, 27, 59, 848, DateTimeKind.Local).AddTicks(8630), false, null, "LAMNT@GMAIL.COM", "LAMNT", "AQAAAAEAACcQAAAAEHYZrqmoy1u2nPQEabzGVsw9zmhRNEFzM5SwfhF6ra2dtciScSylCdMYmSfLfo374w==", null, false, "08dd447d-14da-46be-8bbc-a3e6ee7fc537", false, "lamnt" },
+                    { new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"), 0, "e38726d7-a55c-4419-9629-5dfadb25f6b9", "admin@gmail.com", true, "Admin", true, new DateTime(2024, 3, 3, 2, 27, 59, 847, DateTimeKind.Local).AddTicks(6362), false, null, "ADMIN@GMAIL.COM", "ICPDPHN", "AQAAAAEAACcQAAAAEABlcbSlM8LKmpmkwDCpIbF+O3h8uAjeB6PzX+iqDIzVvb+QtehJQC5cVmmtCqiGPg==", null, false, "1e3ba567-219d-4c37-acf1-04ca037d55e1", false, "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -314,11 +299,6 @@ namespace DataAccess.Migrations
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7") });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answer_QuestionId",
-                table: "Answer",
-                column: "QuestionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -392,9 +372,6 @@ namespace DataAccess.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Answer");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

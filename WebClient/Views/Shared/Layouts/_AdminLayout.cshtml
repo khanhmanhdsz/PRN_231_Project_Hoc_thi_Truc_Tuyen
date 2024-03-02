@@ -14,7 +14,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@currentController | CMCS</title>
-    <link rel="icon" href="~/icon.png" type="image/x-icon" />
+    <link rel="icon" href="~/assets/images/logo.png" type="image/x-icon" />
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"
@@ -38,6 +38,7 @@
             <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center ">
                 <img src="/assets/images/logo.png" alt="">
             </a>
+            <span class="fw-bolder">Online Exam</span>
         </div><!-- End Logo -->
 
         <nav class="header-nav-on-phone ms-auto mx-3">
@@ -61,7 +62,7 @@
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <a asp-controller="Authen" asp-action="LogOut" class="dropdown-item d-flex align-items-center">
+                    <a href="/SignOut" class="dropdown-item d-flex align-items-center">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Đăng xuất</span>
                     </a>
@@ -82,54 +83,73 @@
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Home Nav -->
-            <li class="nav-heading">Manage User</li>
+            <li class="nav-heading">Manage Student</li>
 
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav-link @(currentController.Contains("User") ? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav-link @(currentController.Equals("User") && currentAction.Equals("Index") ? "" : "collapsed")">
                     <i class="bi bi-people"></i>
-                    <span>List User</span>
+                    <span>List Student</span>
+                </a>
+            </li><!-- End Home Nav -->
+
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="User" asp-action="Create" class="nav-link @(currentController.Equals("User") && currentAction.Equals("Create")? "" : "collapsed")">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Create Student</span>
                 </a>
             </li><!-- End Home Nav -->
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Settings" asp-action="EmailSetting" class="nav-link @(currentController == "Settings" && currentAction == "EmailSetting" ? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="User" asp-action="Details" class="nav-link @(currentController.Equals("User") && currentAction.Equals("Details")? "" : "collapsed")">
                     <i class="bi bi-plus-circle"></i>
-                    <span>Add User</span>
+                    <span>Student Details</span>
                 </a>
             </li><!-- End Home Nav -->
-      
+
 
             <li class="nav-heading">Manage Subject</li>
 
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="EduSystem" asp-action="Index" class="nav-link @(currentController.Contains("EduSystem")? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="Subject" asp-action="Index" class="nav-link @(currentController.Equals("Subject") && currentAction.Equals("Index")? "" : "collapsed")">
                     <i class="bi bi-book"></i>
                     <span>List Subject</span>
                 </a>
             </li><!-- End Home Nav -->
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="EduSystem" asp-action="Index" class="nav-link @(currentController.Contains("EduSystem")? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="Subject" asp-action="Create" class="nav-link @(currentController.Equals("Subject") && currentAction.Equals("Create")? "" : "collapsed")">
                     <i class="bi bi-plus-circle"></i>
-                    <span>Add Subject</span>
+                    <span>Create Subject</span>
+                </a>
+            </li><!-- End Home Nav -->
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="Subject" asp-action="Details" class="nav-link @(currentController.Equals("Subject") && currentAction.Equals("Details")? "" : "collapsed")">
+                    <i class="bi bi-info"></i>
+                    <span>Subject Details</span>
                 </a>
             </li><!-- End Home Nav -->
 
             <li class="nav-heading">Manage Quiz</li>
 
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Campus" asp-action="Index" class="nav-link @(currentController.Contains("Campus") ? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController.Equals("Quiz") && currentAction.Equals("Index") ? "" : "collapsed")">
                     <i class="bi bi-question-circle"></i>
                     <span>List Quiz</span>
                 </a>
             </li><!-- End Home Nav -->
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Campus" asp-action="Index" class="nav-link @(currentController.Contains("Campus") ? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="Quiz" asp-action="Create" class="nav-link @(currentController.Equals("Quiz") && currentAction.Equals("Create") ? "" : "collapsed")">
                     <i class="bi bi-plus-circle"></i>
-                    <span>Add Quiz</span>
+                    <span>Create Quiz</span>
+                </a>
+            </li><!-- End Home Nav -->
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="Quiz" asp-action="Details" class="nav-link @(currentController.Equals("Quiz") && currentAction.Equals("Details") ? "" : "collapsed")">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Quiz Details</span>
                 </a>
             </li><!-- End Home Nav -->
             <li class="nav-heading">History</li>
             <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Campus" asp-action="Index" class="nav-link @(currentController.Contains("Campus") ? "" : "collapsed")">
+                <a asp-area="Admin" asp-controller="QuizHistory" asp-action="Index" class="nav-link @(currentController.Equals("Campus") ? "" : "collapsed")">
                     <i class="bi bi-clock-history"></i>
                     <span>Quiz History</span>
                 </a>

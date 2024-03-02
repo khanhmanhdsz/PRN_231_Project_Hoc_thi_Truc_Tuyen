@@ -103,18 +103,18 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "345cf78c-7592-4164-9de7-02b6d753e8ec",
+                            ConcurrencyStamp = "e38726d7-a55c-4419-9629-5dfadb25f6b9",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Admin",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 2, 1, 3, 54, 113, DateTimeKind.Local).AddTicks(4838),
+                            JoinedDate = new DateTime(2024, 3, 3, 2, 27, 59, 847, DateTimeKind.Local).AddTicks(6362),
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ICPDPHN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBxpwnUNXGw70tgcs61hlZ6RQrKAhkN6FD4UNTjFbD6SHLFopOW1Zs8+ZchPmyFrzA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEABlcbSlM8LKmpmkwDCpIbF+O3h8uAjeB6PzX+iqDIzVvb+QtehJQC5cVmmtCqiGPg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2d4fe4d7-9cf6-46e7-bc57-37419970fbf2",
+                            SecurityStamp = "1e3ba567-219d-4c37-acf1-04ca037d55e1",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -122,44 +122,21 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9f6ef224-1c5e-4557-96c1-ed9686168b9a",
+                            ConcurrencyStamp = "cdccd99c-aa30-4260-9c76-570f4a8aba8d",
                             Email = "lamnt@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Nguyen Thanh Lam",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 2, 1, 3, 54, 114, DateTimeKind.Local).AddTicks(8431),
+                            JoinedDate = new DateTime(2024, 3, 3, 2, 27, 59, 848, DateTimeKind.Local).AddTicks(8630),
                             LockoutEnabled = false,
                             NormalizedEmail = "LAMNT@GMAIL.COM",
                             NormalizedUserName = "LAMNT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMXsokEOnxN4lKO5wxsQWNMfI1nsblB7X+i+MwTMpMRGHsz5gyOnm730jZaPAy3btQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHYZrqmoy1u2nPQEabzGVsw9zmhRNEFzM5SwfhF6ra2dtciScSylCdMYmSfLfo374w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ab4de0d3-77fe-47a4-b69b-50f039161190",
+                            SecurityStamp = "08dd447d-14da-46be-8bbc-a3e6ee7fc537",
                             TwoFactorEnabled = false,
                             UserName = "lamnt"
                         });
-                });
-
-            modelBuilder.Entity("DataAccess.Models.Answer", b =>
-                {
-                    b.Property<int>("AnswerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnswerId"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AnswerId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("Answer", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Models.Question", b =>
@@ -170,21 +147,37 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"), 1L, 1);
 
-                    b.Property<int>("CorrectAnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
+                    b.Property<string>("AnswerA")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnswerB")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnswerC")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnswerD")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("QuizId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionId");
 
@@ -200,6 +193,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionHistoryId"), 1L, 1);
+
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("bit");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
@@ -295,8 +291,8 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("SubjectName")
                         .IsRequired()
@@ -339,14 +335,14 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"),
-                            ConcurrencyStamp = "bcd3f7c2-1bb5-41b6-a38f-718279b331fd",
+                            ConcurrencyStamp = "ddf248d2-4821-4ac0-a2b4-32547f16262c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"),
-                            ConcurrencyStamp = "83a2c00b-e4d2-48a9-aa1e-c6c31691930f",
+                            ConcurrencyStamp = "6f8844c3-6e7d-453d-80a9-0ca5ec9096ae",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -467,17 +463,6 @@ namespace DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DataAccess.Models.Answer", b =>
-                {
-                    b.HasOne("DataAccess.Models.Question", "Question")
-                        .WithMany("Answers")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-                });
-
             modelBuilder.Entity("DataAccess.Models.Question", b =>
                 {
                     b.HasOne("DataAccess.Models.Quiz", "Quiz")
@@ -592,11 +577,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Models.Account", b =>
                 {
                     b.Navigation("QuizHistories");
-                });
-
-            modelBuilder.Entity("DataAccess.Models.Question", b =>
-                {
-                    b.Navigation("Answers");
                 });
 
             modelBuilder.Entity("DataAccess.Models.Quiz", b =>

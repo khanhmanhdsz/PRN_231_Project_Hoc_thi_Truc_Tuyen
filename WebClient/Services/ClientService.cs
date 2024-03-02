@@ -49,7 +49,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.GetAsync(relativeUrl);
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 var content = await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(content);
             }
@@ -64,10 +63,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.PostAsync(relativeUrl, GetBody(data));
-                //if ((int)res.StatusCode == 401) 
-                //{ 
-                //    await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication"); 
-                //} 
                 var content = await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(content);
             }
@@ -81,10 +76,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.PutAsync(relativeUrl, GetBody(data));
-                //if ((int)res.StatusCode == 401) 
-                //{ 
-                //    await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication"); 
-                //} 
                 var content = await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(content);
             }
@@ -99,7 +90,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.PatchAsync(relativeUrl, GetBody(data));
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 var content = await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(content);
             }
@@ -114,7 +104,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.DeleteAsync(relativeUrl);
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 var content = await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(content);
             }
@@ -129,7 +118,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.GetAsync(relativeUrl);
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 return await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
             }
             catch
@@ -143,7 +131,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.PostAsync(relativeUrl, GetBody(data));
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 return await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
             }
             catch
@@ -157,7 +144,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.PatchAsync(relativeUrl, GetBody(data));
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 return await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
             }
             catch
@@ -171,7 +157,6 @@ namespace WebClient.Services
             try
             {
                 var res = await _client.DeleteAsync(relativeUrl);
-                //if ((int)res.StatusCode == 401) await _httpContextAccessor.HttpContext.SignOutAsync("CookieAuthentication");
                 return await res.EnsureSuccessStatusCode().Content.ReadAsStringAsync();
             }
             catch

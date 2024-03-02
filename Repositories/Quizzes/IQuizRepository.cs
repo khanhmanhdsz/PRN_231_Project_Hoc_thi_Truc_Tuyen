@@ -11,6 +11,7 @@ namespace Repositories.Quizzes
     public interface IQuizRepository
     {
         Task<QuizPagingRequest> GetQuizzes(QuizPagingRequest request);
+        Task<QuestionPagingRequest> GetQuizById(QuestionPagingRequest request);
         Task<bool> AddQuiz(Quiz quiz);
         Task<bool> UpdateQuiz(Quiz quiz);
     }

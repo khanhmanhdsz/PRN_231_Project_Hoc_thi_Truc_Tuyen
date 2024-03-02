@@ -11,9 +11,9 @@ namespace DataAccess.Models
         public Guid Id { get; set; }
         public int QuizId { get; set; }
         #region Relationship
-        public virtual Quiz Quiz { get; set; }
-        public virtual Account Account { get; set; }
-        public virtual ICollection<QuestionHistory> QuestionHistories { get; set; }
+        public virtual Quiz? Quiz { get; set; }
+        public virtual Account? Account { get; set; }
+        public virtual ICollection<QuestionHistory>? QuestionHistories { get; set; }
         #endregion
     }
 }

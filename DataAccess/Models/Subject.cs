@@ -11,7 +11,7 @@ namespace DataAccess.Models
         public DateTime CreatedDate { get; set; }
 
         #region Relationship
-        public virtual ICollection<Quiz> Quizzes { get; set; }
+        public virtual ICollection<Quiz>? Quizzes { get; set; }
         #endregion
 
     }

@@ -10,8 +10,7 @@ namespace ViewModels.Subjects
 {
     public class SubjectVM
     {
-        [Key]
-        public int SubjectId { get; set; }
+        public int? SubjectId { get; set; }
 
         [Required(ErrorMessage = "* Please enter subject name")]
         [StringLength(100)]
@@ -21,6 +20,6 @@ namespace ViewModels.Subjects
         [StringLength(500)]
         public string Description { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
-        public List<Quiz> Quizzes { get; set; }
+        public List<Quiz>? Quizzes { get; set; }
     }
 }

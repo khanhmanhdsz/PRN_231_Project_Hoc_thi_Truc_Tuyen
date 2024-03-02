@@ -11,7 +11,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@currentController | Online Exam</title>
-    <link rel="icon" href="~/icon.png" type="image/x-icon" />
+    <link rel="icon" href="~/assets/images/logo.png" type="image/x-icon" />
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"
@@ -44,25 +44,25 @@
 
 
 
-                    <li class="nav-item " title="Trang chủ">
+                    <li class="nav-item ">
                         <a asp-controller="Home" asp-action="Index" class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
                             Home
                         </a>
                     </li><!-- End Home Nav -->
 
-                    <li class="nav-item " title="Sự kiện">
-                        <a asp-controller="Event" asp-action="Index" class="nav-link @(currentController == "Event" ? "active" : "")">
+                    <li class="nav-item " >
+                        <a asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
                             Subject
                         </a>
                     </li><!-- End Events Nav -->
 
-                    <li class="nav-item " title="Tin tức">
-                        <a asp-controller="Post" asp-action="Index" class="nav-link @(currentController == "Post"  ? "active" : "")">
+                    <li class="nav-item " >
+                        <a asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
                             Quiz
                         </a>
                     </li><!-- End Events Nav -->
-                    <li class="nav-item" title="Liên hệ">
-                        <a asp-controller="IcPdp" asp-action="Index" class="nav-link @(currentController == "IcPdp"  ? "active" : "")">
+                    <li class="nav-item" >
+                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
                             Contact
                         </a>
                     </li><!-- End Clubs Nav -->
@@ -81,23 +81,23 @@
                     </li><!-- End Home Nav -->
 
                     <li class="nav-item " title="Sự kiện">
-                        <a asp-controller="Event" asp-action="Index" class="nav-link @(currentController == "Event" ? "active" : "")">
+                        <a asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
                             Subject
                         </a>
                     </li><!-- End Events Nav -->
 
                     <li class="nav-item " title="Tin tức">
-                        <a asp-controller="Post" asp-action="Index" class="nav-link @(currentController == "Post"  ? "active" : "")">
+                        <a asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
                             Quiz
                         </a>
                     </li><!-- End Events Nav -->
 
                     <li class="nav-item" title="Liên hệ">
-                        <a asp-controller="IcPdp" asp-action="Index" class="nav-link @(currentController == "IcPdp"  ? "active" : "")">
+                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
                             Contact
                         </a>
                     </li><!-- End Clubs Nav -->
-                    <li class="nav-item px-3 py-2" title="Đăng nhập">
+                    <li class="nav-item px-3 py-2">
                         <a class="btn btn-primary btn-signin nav-link color-white py-2" asp-controller="Authen" asp-action="SignIn">Sign In</a>
                     </li><!-- End Clubs Nav -->
 

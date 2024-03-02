@@ -5,11 +5,11 @@
 
 
 <div class="pagetitle">
-    <h1>User Details</h1>
+    <h1>Student Details</h1>
 </div><!-- End Page Title -->
 
 <div class="row">
-    <div id="toggle-sidebar-target" class="col-sm-12 col-md-6 col-lg-6 m-auto ">
+    <div class="col-sm-12 col-md-6 col-lg-6 m-auto ">
         <div class="card p-3">
             <form id="form-edit" method="POST" asp-area="Admin" asp-controller="User" asp-action="Update">
                 <div class="row mb-3">
@@ -19,11 +19,11 @@
                             <input disabled asp-for="Email" type="text" class="form-control">
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="row mb-3">
-                     <div class="col-sm-12">
-                       <label class="col-sm-12 fw-bold">Fullname</label>
+                    <div class="col-sm-12">
+                        <label class="col-sm-12 fw-bold">Fullname</label>
                         <div class="col-sm-12">
                             <input disabled asp-for="Fullname" name="Fullname" type="text" class="form-control">
                         </div>
@@ -32,10 +32,7 @@
                 <div class="row mb-3">
                     <label class=" col-sm-12  fw-bold">Active Status</label>
                     <div class="col-sm-12">
-
-                        <span class="badge rounded-pill @(Model?.IsAccountActive == true? "bg-success" : "bg-danger")">@(Model?.IsAccountActive == true ? "Active" : "Blocked") </span>
-
-
+                        <span class="badge rounded-pill @(Model?.IsAccountActive == true? "bg-success" : "bg-danger")">@(Model?.IsAccountActive == true ? "Active" : "Deactive") </span>
                     </div>
                 </div>
 
@@ -46,10 +43,10 @@
                             <i class="bi bi-arrow-left"></i>
                             <span>Return</span>
                         </a>
-                        @*  <a asp-area="Admin" asp-controller="User" asp-action="Update" asp-route-email="@Model.Email" class="btn btn-primary mx-2">
-                        <i class="bi bi-pencil"></i>
-                        <span>Edit</span>
-                        </a>*@
+                        <a asp-area="Admin" asp-controller="User" asp-action="Update" asp-route-email="@Model.Email" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil"></i>
+                            <span>Edit</span>
+                        </a>
                     </div>
                 </div>
 

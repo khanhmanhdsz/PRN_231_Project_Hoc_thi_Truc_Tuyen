@@ -24,6 +24,5 @@
             }
         }
         public List<T>? Items { get; set; }
-        public List<T>? ItemVms { get; set; }
     }
 }

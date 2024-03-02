@@ -1,0 +1,208 @@
+﻿@using ViewModels.Quizzes
+@using ViewModels.Questions
+@using ViewModels
+@using ViewModels.Paging
+@using WebClient.Helpers
+@model QuestionPagingRequest
+
+@{
+    List<QuestionVM> questions = Model.ItemVMs;
+    QuizVM quiz = Model.QuizVM;
+    int index = 1;
+
+    int totalRecord = (int)Model.TotalRecord;
+    int totalPages = (int)Model.TotalPages;
+    int currentPage = Model.CurrentPage;
+    int pageSize = Model.PageSize;
+
+    int startPage = Math.Max(1, currentPage - 2);
+    int endPage = Math.Min(totalPages, currentPage + 2);
+
+    int startIndex = ((currentPage - 1) * pageSize) + 1;
+    int endIndex = startIndex + pageSize - 1;
+    if (endIndex > totalRecord) endIndex = totalRecord;
+
+    int ordinalNumber = 1;
+}
+
+<div class="pagetitle">
+    <h1>Quiz Details</h1>
+</div><!-- End Page Title -->
+
+<div class="card p-3">
+    <div class="row">
+
+        <div class="row text-center">
+            <span class="fw-bold">@quiz.Title</span>
+            <span class="fst-italic">@quiz.Description</span>
+            <a>@quiz?.Subject?.SubjectName</a>
+            <div>
+                <i class="bi bi-clock"></i>
+                <span>
+                    @quiz.Duration
+                </span>
+                <span>
+                    miniutes
+                </span>
+            </div>
+
+        </div>
+        <div class="my-3">
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <div>
+                    <label class="fw-bold">List question</label>
+                </div>
+                <div>
+                    <a asp-controller="Question" asp-action="Create" asp-route-quizId="@quiz.QuizId" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i>
+                        <span>Add question</span>
+                    </a>
+                    <button class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#model-import-excel">
+                        <i class="bi bi-arrow-down"></i>
+                        <span>Import question</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Accordion without outline borders -->
+        <div class="accordion" id="accordionFlush">
+
+            @foreach (var question in questions)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading-@question.QuestionId">
+                        <button class="accordion-button collapsed"
+                            type="button">
+                            <span>@(index++)</span>
+                            <span>. @question.Title</span>
+                        </button>
+                    </h2>
+                    <div id="flush-@question.QuestionId" class="accordion-collapse"
+                     aria-labelledby="flush-heading-@question.QuestionId"
+                     data-bs-parent="#accordionFlush">
+                        <div class="accordion-body">
+                            <div class="d-flex flex-column">
+                                <div>
+                                    <span>A.</span>
+                                    <span>@question.AnswerA</span>
+                                </div>
+                                <div>
+                                    <span>B. </span>
+                                    <span>@question.AnswerB</span>
+                                </div>
+                                <div>
+                                    <span>C.</span>
+                                    <span>@question.AnswerC</span>
+                                </div>
+                                <div>
+                                    <span> D.</span>
+                                    <span>@question.AnswerD</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-red">Correct answer: @question.CorrectAnswer</span>
+                            </div>
+                            <div class="mt-2">
+                                <a asp-controller="Question" asp-action="Delete" asp-route-quizId="@Model.QuizId" class="btn btn-red">
+                                    <i class="bi bi-trash"></i>
+                                    <span>Remove</span>
+                                </a>
+                                <a asp-controller="Question" asp-action="Update" asp-route-quizId="@Model.QuizId" class="btn btn-primary ms-2">
+                                    <i class="bi bi-pencil"></i>
+                                    <span>Edit</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="row d-flex justify-content-center align-items-center mt-3">
+            <div class="col d-flex flex-row">
+                <div class="center">
+                    <span class="fst-italic ">Show <strong>@startIndex - @endIndex</strong> in total of <strong> @totalRecord</strong> questions</span>
+                </div>
+            </div>
+            @if (totalPages > 1)
+            {
+                <ul class="pagination justify-content-end col">
+                    <li class="page-item @((currentPage == 1) ? "disabled" : "")">
+                        <a onclick="event.preventDefault(); setCurrentPage('@(currentPage-1)')" class="page-link link-paging" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+
+                    @if (currentPage > 3)
+                    {
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    }
+
+                    @for (int pageIndex = startPage; pageIndex <= endPage; pageIndex++)
+                    {
+                        <li class="page-item @(pageIndex == currentPage ? "link-active" : "")">
+                            <a onclick="event.preventDefault(); setCurrentPage('@pageIndex')" class="page-link link-paging" href="#">@pageIndex</a>
+                        </li>
+                    }
+
+                    @if (currentPage < Math.Ceiling(totalRecord / 10.0) - 2)
+                    {
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    }
+
+                    <li class="page-item @((currentPage == totalPages) ? "disabled" : "")">
+                        <a onclick="event.preventDefault(); setCurrentPage('@(currentPage + 1)')" class="page-link link-paging" href="#">Next</a>
+                    </li>
+                </ul>
+            }
+        </div>
+        <!-- End Accordion without outline borders -->
+    </div>
+</div>
+
+<form id="form-search" method="get" asp-area="Admin" asp-controller="Quiz" asp-action="Details">
+    <input type="hidden" value="@quiz.QuizId" name="QuizId" />
+    <input id="current-page" type="hidden" asp-for="CurrentPage" name="CurrentPage" />
+</form>
+
+<div class="modal fade" id="model-import-excel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import question from excel</h5>
+            </div>
+            <div class="modal-body">
+                <div class="px-3">
+                    <div class="row mb-3">
+                        <span class="col-sm-12 p-0 fw-bold">Question excel template</span>
+                        <a href="/templates/Question Template.csv" class="col-sm-12 btn btn-info ">
+                            <span>
+                                <i class="bi bi-file-earmark-excel-fill me-1"></i>
+                                Click to download template
+                            </span>
+                        </a>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-12 p-0 fw-bold">Upload question excel</span>
+                        <button onclick="onChooseFile('import-file')" id="btn-submit" type="button" class="btn btn-secondary col-sm-12">
+                            <span id="spinner" class="visually-hidden">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="visually-hidden">Loading...</span>
+                                <span>Processing</span>
+                            </span>
+                            <span id="btn-content">
+                                <i class="bi bi-upload me-1"></i>
+                                <span>Upload excel</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <form method="post" id="form-import-file" asp-area="Admin" asp-controller="Question" asp-action="ImportFromFile" enctype="multipart/form-data">
+                    <input name="QuizId" type="hidden" value="@Model.QuizId" />
+                    <input onchange="submitForm('form-import-file'); showSpinner();" accept=".xlsx, .csv" type="file" name="file" id="import-file" hidden />
+                </form>
+            </div>
+            <div class="modal-footer pe-3">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

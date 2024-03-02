@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.Models;
 using ViewModels.Accounts;
-using ViewModels.Answers;
 using ViewModels.Questions;
 using ViewModels.QuestionHistories;
 using ViewModels.Quizzes;
@@ -17,16 +16,14 @@ namespace WebApi.Config
             var mapperConfig = new MapperConfiguration(config =>
             {
                 // Mapper Account
-                config.CreateMap<AccountVM, Account>();
+                config.CreateMap<AccountVM, Account>()
+                        .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email));
                 config.CreateMap<Account, AccountVM>();
-
-                // Mapper Answer
-                config.CreateMap<Answer, AnswerVM>();
-                config.CreateMap<AnswerVM, Answer>();
 
                 // Mapper Question
                 config.CreateMap<Question, QuestionVM>();
                 config.CreateMap<QuestionVM, Question>();
+                config.CreateMap<ImportQuestionVM, Question>();
 
                 // Mapper QuestionHistory
                 config.CreateMap<QuestionHistory, QuestionHistoryVM>();

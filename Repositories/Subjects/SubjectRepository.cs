@@ -27,7 +27,21 @@ namespace Repositories.Subjects
             {
                 Console.WriteLine($"Error: {e.Message}");
             }
-                return false;
+            return false;
+        }
+
+        public async Task<Subject> GetSubjectById(int id)
+        {
+            Subject? subject = new();
+            try
+            {
+                subject = await _context.Subjects.SingleOrDefaultAsync(s => s.SubjectId == id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            return subject;
         }
 
         public async Task<SubjectPagingRequest> GetSubjects(SubjectPagingRequest request)
@@ -55,6 +69,34 @@ namespace Repositories.Subjects
             return request;
         }
 
+        public async Task<List<Subject>> GetSubjects()
+        {
+            try
+            {
+                return await _context.Subjects.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            return new List<Subject>();
+        }
+
+        public async Task<bool> IsExistedSubject(int subjectId, string subjectName)
+        {
+            try
+            {
+                Subject? subject = await _context.Subjects.SingleOrDefaultAsync(s => s.SubjectName.ToLower().Equals(subjectName.ToLower()));
+                if (subject != null && subject.SubjectId != subjectId) return true; 
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.ToString()}");
+                return true;
+            }
+        }
+
         public async Task<bool> UpdateSubject(Subject subject)
         {
             try
@@ -63,14 +105,15 @@ namespace Repositories.Subjects
 
                 if (existingSubject != null)
                 {
-                    // Entity exists, so update it
-                    _context.Entry(existingSubject).CurrentValues.SetValues(subject);
-                }
-                if (await _context.SaveChangesAsync() > 0)
-                {
-                    return true;
-                }
+                    existingSubject.SubjectName = subject.SubjectName;
+                    existingSubject.Description = subject.Description;
 
+                    _context.Update(existingSubject);
+                    if (await _context.SaveChangesAsync() > 0)
+                    {
+                        return true;
+                    }
+                }
             }
             catch (Exception e)
             {

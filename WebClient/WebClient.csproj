@@ -194,8 +194,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Quiz\" />
-    <Folder Include="Areas\Admin\Views\Subject\" />
     <Folder Include="Areas\Student\Views\QuizHistory\" />
     <Folder Include="Areas\Student\Views\Quiz\" />
     <Folder Include="Areas\Student\Views\Subject\" />

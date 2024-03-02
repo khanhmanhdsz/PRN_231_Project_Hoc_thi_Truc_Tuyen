@@ -9,7 +9,7 @@ namespace DataAccess.Models
         public bool IsAccountActive { get; set; }
 
         #region Relationship
-        public virtual ICollection<QuizHistory> QuizHistories { get; set; }
+        public virtual ICollection<QuizHistory>? QuizHistories { get; set; }
         #endregion
     }
 }

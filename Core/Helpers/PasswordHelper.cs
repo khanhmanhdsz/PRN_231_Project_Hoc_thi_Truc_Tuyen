@@ -21,7 +21,7 @@ namespace Core.Helpers
         {
             if (length < 7)
             {
-                throw new ArgumentException("Độ dài mật khẩu phải ít nhất là 7 ký tự.");
+                throw new ArgumentException("Password length must greater than 7");
             }
 
             // First Character is Upercase
@@ -44,12 +44,6 @@ namespace Core.Helpers
             return new string(passwordChars);
         }
 
-        /// <summary>
-        /// Generate random character
-        /// </summary>
-        /// <param name="charSet"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
         public static char[] GenerateRandomChars(string charSet, int count)
         {
             var random = new Random();

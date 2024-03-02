@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lhy1Wslt47AYUo83l1GxOsF6C6DwdRddS6WG4puMxRkAEKjTEKWPjFaqlUM7qSAAM1qJmbIX9RQ75qTSJj3Oow==",
+  "dgSpecHash": "AzikbwMS+DvzR/3iJiqZUb7khxlt9TpkE8xMpbFTbExbydkNXKpXt9jSWcOrUd2wTA+q0iR0hcHi41WIf2CdaQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\WebClient\\WebClient.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\WebClient\\WebClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\epplus\\6.2.9\\epplus.6.2.9.nupkg.sha512",

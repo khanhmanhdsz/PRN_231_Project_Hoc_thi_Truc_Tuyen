@@ -16,13 +16,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using ViewModels.Accounts;
 
 namespace WebClient.Controllers
 {
-    //[ValidateAntiForgeryToken]
     public class AuthenController : Controller
     {
-        // Dependency injection of services
         private readonly ClientService _clientService; // Service for making API requests
         private readonly IConfiguration _configuration;
 
@@ -48,6 +47,36 @@ namespace WebClient.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Register(AccountVM request)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    request.StartDate = DateTime.Now;
+                    var apiPath = $"{ApiPaths.Admin}/Authen/Register";
+                    var response = await _clientService.Post<ResponseVM>(apiPath, request);
+                    if (response == null)
+                    {
+                        throw new Exception("Server error");
+                    }
+                    if (!response.Status)
+                    {
+                        throw new Exception(response.Message);
+                    }
+                    ToastHelper.ShowSuccess(TempData, "Register successful");
+                    ToastHelper.ShowSuccess(TempData, "Password has been sent to your email");
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception ex)
+            {
+                ToastHelper.ShowError(TempData, ex.Message);
+            }
+            return View(request);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> SignIn(SignInVM loginRequest)
         {
             try
@@ -64,7 +93,7 @@ namespace WebClient.Controllers
                     string accessToken = response.Message; // Extract the access token
 
                     SessionHelper.SetObject(HttpContext.Session, "AccessToken", accessToken);
-
+                    Console.WriteLine(accessToken);
                     TokenHelper tokenHelper = new TokenHelper();
                     // Get all claims from the access token
                     var allClaims = tokenHelper.GetAllClaims(accessToken);
@@ -132,15 +161,17 @@ namespace WebClient.Controllers
 
 
         [HttpGet]
+        [Route("/SignOut")]
         public async Task<IActionResult> SignOut()
         {
             try
             {
+                Console.WriteLine("Run here");
 
                 SessionHelper.Remove(HttpContext.Session, "UserInfo");
                 SessionHelper.Remove(HttpContext.Session, "AccessToken");
 
-                await HttpContext.SignOutAsync("SessionAuthenticationScheme");
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             }
             catch (Exception ex)

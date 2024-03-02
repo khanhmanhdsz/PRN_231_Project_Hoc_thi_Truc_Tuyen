@@ -13,7 +13,6 @@ using WebClient.Helpers;
 using ViewModels.Accounts;
 using WebClient;
 using ViewModels;
-using FCMS.Client.Constants;
 
 namespace WebClient.Areas.Admin.Controllers
 {
@@ -31,13 +30,13 @@ namespace WebClient.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index( AccountPagingRequest request)
+        public async Task<IActionResult> Index(AccountPagingRequest request)
         {
             try
             {
-      
+
                 request.SearchTerm = StringHelper.RefinedSearchTerm(request.SearchTerm);
-                request.RoleName = RoleName.Student;
+                request.RoleName = RoleConstants.Student;
 
                 AccountPagingRequest response = await _clientService.Post<AccountPagingRequest>(ApiPaths.Admin + "/Account/GetAll", request);
                 if (response == null)
@@ -55,71 +54,39 @@ namespace WebClient.Areas.Admin.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search(AccountPagingRequest request)
+        [HttpGet]
+        public IActionResult Create()
         {
-            return RedirectToAction(nameof(Index), request);
+            return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Create()
+        [HttpPost]
+        public async Task<IActionResult> Create(AccountVM request)
         {
             try
             {
-              
-
+                if (ModelState.IsValid)
+                {
+                    request.StartDate = DateTime.Now;
+                    var apiPath = $"{ApiPaths.Admin}/Account/CreateAccountManual";
+                    var response = await _clientService.Post<ResponseVM>(apiPath, request);
+                    if (response == null)
+                    {
+                        throw new Exception("Server error");
+                    }
+                    if (!response.Status)
+                    {
+                        throw new Exception(response.Message);
+                    }
+                    ToastHelper.ShowSuccess(TempData, response.Message);
+                    return RedirectToAction(nameof(Index));
+                }
             }
             catch (Exception ex)
             {
                 ToastHelper.ShowError(TempData, ex.Message);
             }
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AccountVM request, bool isSubmit)
-        {
-            try
-            {
-              
-
-                if (ModelState.IsValid && isSubmit)
-                {
-                    request.Roles = new List<string> { RoleName.Mentor };
-
-                    ResponseVM? response = await _clientService.Post<ResponseVM>(ApiPaths.Admin + "/Account/CreateAccountManual", request);
-                    if (response != null)
-                    {
-
-                        if (response.Status)
-                        {
-                            ToastHelper.ShowSuccess(TempData, response.Message);
-                            return RedirectToAction("Index");
-                        }
-                        else
-                        {
-                            ToastHelper.ShowWarning(TempData, response.Message);
-                            return View(request);
-                        }
-                    }
-                    else
-                    {
-                        ToastHelper.ShowError(TempData, "Lỗi API");
-                        return RedirectToAction("Error500", "Error", new { area = "" });
-                    }
-                }
-                else
-                {
-                    return View(request);
-                }
-            }
-            catch (Exception)
-            {
-
-                return View(request);
-            }
+            return View(request);
         }
 
         [HttpPost]
@@ -131,12 +98,11 @@ namespace WebClient.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    request.Roles = new List<string> { RoleName.Student };
-
-                    ResponseVM response = await _clientService.Post<ResponseVM>(ApiPaths.Admin + "/Account/UpdateAccountManual", request);
+                    var apiPath = $"{ApiPaths.Admin}/Account/UpdateAccountManual";
+                    ResponseVM response = await _clientService.Post<ResponseVM>(apiPath, request);
                     if (response == null)
                     {
-                        throw new Exception("Không nhận được dữ liệu trả về khi chỉnh sửa mentor");
+                        throw new Exception("Server error");
                     }
 
                     if (!response.Status)
@@ -144,20 +110,15 @@ namespace WebClient.Areas.Admin.Controllers
 
                         throw new Exception(response.Message);
                     }
-
                     ToastHelper.ShowSuccess(TempData, response.Message);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(request);
+                    return RedirectToAction(nameof(Index));
                 }
             }
             catch (Exception ex)
             {
                 ToastHelper.ShowError(TempData, ex.Message);
-                return View(request);
             }
+                return View(request);
         }
 
         [HttpGet]
@@ -167,7 +128,7 @@ namespace WebClient.Areas.Admin.Controllers
             {
                 if (String.IsNullOrEmpty(email))
                 {
-                    throw new Exception("Hãy chọn 1 mentor để xem thông tin.");
+                    throw new Exception("Choose a student to view their information");
                 }
 
 
@@ -175,7 +136,7 @@ namespace WebClient.Areas.Admin.Controllers
 
                 if (account == null)
                 {
-                    throw new Exception($"Người dùng có email '{email}' không tồn tại.");
+                    throw new Exception($"Student with '{email}' doesn't exist.");
                 }
 
                 AccountVM updateAccountVM = new AccountVM()
@@ -190,7 +151,7 @@ namespace WebClient.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 ToastHelper.ShowInfo(TempData, ex.Message);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
         }
 
@@ -201,7 +162,7 @@ namespace WebClient.Areas.Admin.Controllers
             {
                 if (String.IsNullOrEmpty(email))
                 {
-                    throw new Exception("Hãy chọn 1 mentor để chỉnh sửa thông tin.");
+                    throw new Exception("Choose a student to view their information");
                 }
 
 
@@ -209,7 +170,7 @@ namespace WebClient.Areas.Admin.Controllers
 
                 if (account == null)
                 {
-                    throw new Exception($"Người dùng có email '{email}' không tồn tại.");
+                    throw new Exception($"Student with '{email}' doesn't exist.");
                 }
 
                 AccountVM updateAccountVM = new AccountVM()
@@ -225,7 +186,7 @@ namespace WebClient.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 ToastHelper.ShowInfo(TempData, ex.Message);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
         }
     }
