@@ -142,9 +142,10 @@ namespace Repositories.Accounts
         }
         public async Task<ResponseVM> CreateAccountManualAsync(Account account, List<string> roles)
         {
+            var password = PasswordHepler.GenerateAccountPassword(10);
             try
             {
-                var password = PasswordHepler.GenerateAccountPassword(10);
+                account.Password = password;
                 // Insert the account into the database
                 var result = await userManager.CreateAsync(account, password);
 
@@ -158,7 +159,7 @@ namespace Repositories.Accounts
 
                         if (idenResult.Succeeded)
                         {
-                            return new ResponseVM() { Status = true, Message = "Create account successful!" };
+                            return new ResponseVM() { Status = true, Message = password };
                         }
                         else
                         {
@@ -209,7 +210,7 @@ namespace Repositories.Accounts
 
                 // Update account properties with values from the request
                 account.Fullname = request.Fullname;
-   
+
                 //account.isAccountActive = request.IsAccountActive ?? false;
 
                 // Debug: Retrieve the user by email 

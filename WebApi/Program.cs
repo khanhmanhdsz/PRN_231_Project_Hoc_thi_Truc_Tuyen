@@ -15,6 +15,7 @@ using System.Text.Json.Serialization;
 using WebApi.Config;
 using Repositories.Accounts;
 using DataAccess.Models;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,8 @@ builder.Services.AddAuthentication(option =>
 
 });
 
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<EmailService>();
 
 //Regist DbContext Service
 builder.Services.AddDbContext<OnlineExamDbContext>(options =>
@@ -70,6 +73,7 @@ builder.Services.AddDbContext<OnlineExamDbContext>(options =>
 /**
  * Register customize services
  */
+builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<IAuthenRepository, AuthenRepository>();
 builder.Services.AddTransient<ISubjectRepository, SubjectRepository>();

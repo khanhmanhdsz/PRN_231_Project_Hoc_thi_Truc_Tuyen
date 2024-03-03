@@ -7,6 +7,7 @@ namespace DataAccess.Models
         public string Fullname { get; set; } = string.Empty;
         public DateTime JoinedDate { get; set;}
         public bool IsAccountActive { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         #region Relationship
         public virtual ICollection<QuizHistory>? QuizHistories { get; set; }

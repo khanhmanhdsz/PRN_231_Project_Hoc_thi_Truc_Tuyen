@@ -44,17 +44,12 @@ namespace Repositories.Authen
             try
             {
                 // Find User by Username in database
-                var user = await _context.Accounts.SingleOrDefaultAsync(a => a.Email == request.Email && a.IsAccountActive == true);
+                var user = await _context.Accounts.SingleOrDefaultAsync(a => a.Email == request.Email 
+                && a.Password == request.Password
+                && a.IsAccountActive == true);
 
                 if (user != null)
                 {
-                    var signInResult = await signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-
-                    if (!signInResult.Succeeded)
-                    {
-                        throw new Exception("Please check again your password");
-
-                    }
                     var roles = await userManager.GetRolesAsync(user);
                     // create info will stored in JWT, these info will be encode and decode by API application use this JWT
                     List<Claim> claims = new List<Claim>
@@ -78,7 +73,7 @@ namespace Repositories.Authen
                 }
                 else
                 {
-                    throw new Exception("Email doesn't exist");
+                    throw new Exception("Please check your email or password");
                 }
             }
             catch (Exception ex)

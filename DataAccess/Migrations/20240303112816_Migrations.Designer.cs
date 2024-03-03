@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(OnlineExamDbContext))]
-    [Migration("20240302192800_Migrations")]
+    [Migration("20240303112816_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,10 @@ namespace DataAccess.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -105,18 +109,19 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e38726d7-a55c-4419-9629-5dfadb25f6b9",
+                            ConcurrencyStamp = "b149d199-41e3-47b3-b868-d9c93f159e31",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Admin",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 3, 2, 27, 59, 847, DateTimeKind.Local).AddTicks(6362),
+                            JoinedDate = new DateTime(2024, 3, 3, 18, 28, 16, 157, DateTimeKind.Local).AddTicks(1559),
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ICPDPHN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEABlcbSlM8LKmpmkwDCpIbF+O3h8uAjeB6PzX+iqDIzVvb+QtehJQC5cVmmtCqiGPg==",
+                            Password = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG6HjC1trh1AG04pAOu5qk2XLHaTz2j3saJUjM0nYvNN2tCzO+6FneHfIUHsG3/Tfw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1e3ba567-219d-4c37-acf1-04ca037d55e1",
+                            SecurityStamp = "320b3738-65cb-4065-9d22-72ae8d459957",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -124,18 +129,19 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cdccd99c-aa30-4260-9c76-570f4a8aba8d",
+                            ConcurrencyStamp = "936111a9-7e43-47c5-aeab-4f930049cd90",
                             Email = "lamnt@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Nguyen Thanh Lam",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 3, 2, 27, 59, 848, DateTimeKind.Local).AddTicks(8630),
+                            JoinedDate = new DateTime(2024, 3, 3, 18, 28, 16, 159, DateTimeKind.Local).AddTicks(8642),
                             LockoutEnabled = false,
                             NormalizedEmail = "LAMNT@GMAIL.COM",
                             NormalizedUserName = "LAMNT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHYZrqmoy1u2nPQEabzGVsw9zmhRNEFzM5SwfhF6ra2dtciScSylCdMYmSfLfo374w==",
+                            Password = "lamnt",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBxRFlCnPTSyjt9qClj3cE7PBytQ2dTz6aU5imBlrqyop87lpWOrAxZhPZNB3oLRBw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "08dd447d-14da-46be-8bbc-a3e6ee7fc537",
+                            SecurityStamp = "1fd21c74-019f-4d2a-a235-79dfcba25013",
                             TwoFactorEnabled = false,
                             UserName = "lamnt"
                         });
@@ -337,14 +343,14 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"),
-                            ConcurrencyStamp = "ddf248d2-4821-4ac0-a2b4-32547f16262c",
+                            ConcurrencyStamp = "774e81bf-43dc-4a89-958b-f5b77217a257",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"),
-                            ConcurrencyStamp = "6f8844c3-6e7d-453d-80a9-0ca5ec9096ae",
+                            ConcurrencyStamp = "4cc97bae-4a99-4a42-a3a5-adb309cf8051",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });

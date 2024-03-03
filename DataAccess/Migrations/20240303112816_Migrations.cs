@@ -31,6 +31,7 @@ namespace DataAccess.Migrations
                     Fullname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     JoinedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsAccountActive = table.Column<bool>(type: "bit", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -277,17 +278,17 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), "ddf248d2-4821-4ac0-a2b4-32547f16262c", "Admin", "ADMIN" },
-                    { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), "6f8844c3-6e7d-453d-80a9-0ca5ec9096ae", "Student", "STUDENT" }
+                    { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), "774e81bf-43dc-4a89-958b-f5b77217a257", "Admin", "ADMIN" },
+                    { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), "4cc97bae-4a99-4a42-a3a5-adb309cf8051", "Student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Fullname", "IsAccountActive", "JoinedDate", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Fullname", "IsAccountActive", "JoinedDate", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "cdccd99c-aa30-4260-9c76-570f4a8aba8d", "lamnt@gmail.com", true, "Nguyen Thanh Lam", true, new DateTime(2024, 3, 3, 2, 27, 59, 848, DateTimeKind.Local).AddTicks(8630), false, null, "LAMNT@GMAIL.COM", "LAMNT", "AQAAAAEAACcQAAAAEHYZrqmoy1u2nPQEabzGVsw9zmhRNEFzM5SwfhF6ra2dtciScSylCdMYmSfLfo374w==", null, false, "08dd447d-14da-46be-8bbc-a3e6ee7fc537", false, "lamnt" },
-                    { new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"), 0, "e38726d7-a55c-4419-9629-5dfadb25f6b9", "admin@gmail.com", true, "Admin", true, new DateTime(2024, 3, 3, 2, 27, 59, 847, DateTimeKind.Local).AddTicks(6362), false, null, "ADMIN@GMAIL.COM", "ICPDPHN", "AQAAAAEAACcQAAAAEABlcbSlM8LKmpmkwDCpIbF+O3h8uAjeB6PzX+iqDIzVvb+QtehJQC5cVmmtCqiGPg==", null, false, "1e3ba567-219d-4c37-acf1-04ca037d55e1", false, "admin" }
+                    { new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "936111a9-7e43-47c5-aeab-4f930049cd90", "lamnt@gmail.com", true, "Nguyen Thanh Lam", true, new DateTime(2024, 3, 3, 18, 28, 16, 159, DateTimeKind.Local).AddTicks(8642), false, null, "LAMNT@GMAIL.COM", "LAMNT", "lamnt", "AQAAAAEAACcQAAAAEBxRFlCnPTSyjt9qClj3cE7PBytQ2dTz6aU5imBlrqyop87lpWOrAxZhPZNB3oLRBw==", null, false, "1fd21c74-019f-4d2a-a235-79dfcba25013", false, "lamnt" },
+                    { new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"), 0, "b149d199-41e3-47b3-b868-d9c93f159e31", "admin@gmail.com", true, "Admin", true, new DateTime(2024, 3, 3, 18, 28, 16, 157, DateTimeKind.Local).AddTicks(1559), false, null, "ADMIN@GMAIL.COM", "ICPDPHN", "admin", "AQAAAAEAACcQAAAAEG6HjC1trh1AG04pAOu5qk2XLHaTz2j3saJUjM0nYvNN2tCzO+6FneHfIUHsG3/Tfw==", null, false, "320b3738-65cb-4065-9d22-72ae8d459957", false, "admin" }
                 });
 
             migrationBuilder.InsertData(

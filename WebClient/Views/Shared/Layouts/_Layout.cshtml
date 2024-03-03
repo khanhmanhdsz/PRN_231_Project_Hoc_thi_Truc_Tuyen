@@ -35,9 +35,12 @@
     <header id="header" class="header fixed-top">
         <div class="container-fluid d-flex align-items-center justify-content-between">
 
-            <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-                <img src="/assets/images/logo.png" />
-            </a>
+            <div>
+                <a asp-controller="Home" asp-action="Index" class="logo scrollto me-auto me-lg-0">
+                    <img src="/assets/images/logo.png" />
+                </a>
+                <span class="fw-bolder">Online Exam</span>
+            </div>
 
             <nav id="navbar" class="navbar">
                 <ul>
@@ -50,18 +53,18 @@
                         </a>
                     </li><!-- End Home Nav -->
 
-                    <li class="nav-item " >
+                    <li class="nav-item ">
                         <a asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
                             Subject
                         </a>
                     </li><!-- End Events Nav -->
 
-                    <li class="nav-item " >
+                    <li class="nav-item ">
                         <a asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
                             Quiz
                         </a>
                     </li><!-- End Events Nav -->
-                    <li class="nav-item" >
+                    <li class="nav-item">
                         <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
                             Contact
                         </a>

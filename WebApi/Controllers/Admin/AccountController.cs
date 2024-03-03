@@ -8,6 +8,8 @@ using ViewModels.Accounts;
 using ViewModels;
 using DataAccess.Models;
 using Core.Constants;
+using WebApi.Services;
+using Humanizer;
 
 namespace WebApi.Controllers.Admin
 {
@@ -18,11 +20,13 @@ namespace WebApi.Controllers.Admin
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService;
 
-        public AccountController(IAccountRepository accountRepository, IMapper mapper)
+        public AccountController(IAccountRepository accountRepository, IMapper mapper, IEmailService emailService)
         {
             _accountRepository = accountRepository;
             _mapper = mapper;
+            _emailService = emailService;
         }
 
 
@@ -48,6 +52,41 @@ namespace WebApi.Controllers.Admin
                 var account = _mapper.Map<Account>(request);
                 var roles = new List<string>() { RoleConstants.Student };
                 var response = await _accountRepository.CreateAccountManualAsync(account, roles);
+
+                if (response != null && response.Status)
+                {
+                    string link = "https://localhost:7173/Authen/SignIn";
+                    string Subject = "[LOGIN INVITATION] - Welcome To Online Exam Website";
+                    string Body = @"
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <title>Invitation Letter</title>
+                                <style>
+                          
+
+                                </style>
+                            </head>
+                            <body>
+                                <div class=""container"">
+                                    <h3>Hi " + request.Fullname + @", </h3>
+                                    <p>You have an invitation to use online exam website.</p>
+                                    <p>Please use your email: <strong>" + request.Email + @"</strong> and password: <strong>" + response.Message + @"</strong> to login!</p>
+                                    <div>
+                                        <span>Our website: </span>
+                                        <a href='" + link + @"' ><span>Click here</span></a>
+                                    </div>
+                                </div>
+                            </body>
+                            </html>
+                            ";
+                    // Send Email to user
+                    await _emailService.SendHtmlEmailAsync(request.Email, Subject, Body);
+
+
+                    response.Message = "Create student successful";
+                }
+
                 return Ok(response);
             }
             catch (Exception ex)

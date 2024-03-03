@@ -40,80 +40,39 @@
     <header id="header" class="header fixed-top" data-scrollto-offset="0">
         <div class="container-fluid d-flex align-items-center justify-content-between">
 
-            <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-                <img src="/assets/images/fpt-education-logo.png" />
-            </a>
+            <div>
+                <a asp-controller="Home" asp-action="Index" class="logo scrollto me-auto me-lg-0">
+                    <img src="/assets/images/logo.png" />
+                </a>
+                <span class="fw-bolder">Online Exam</span>
+            </div>
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li class="nav-item " title="Trang chủ">
-                        <a asp-area="Student" asp-controller="Home" asp-action="Index" class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
-                            Trang chủ
+                    <li class="nav-item ">
+                        <a asp-controller="Home" asp-action="Index" class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
+                            Home
                         </a>
                     </li><!-- End Home Nav -->
-                    <li class="dropdown">
-                        <a class="nav-dropdown @(currentController == "Event" || currentController == "MyEvent" ? "active" : "")" asp-controller="Event" asp-action="Index">
-                            Sự kiện
-                            <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul>
-                            <li class="@(currentController == "Event" && currentAction == "Index" ? "active" : "")">
-                                <a asp-controller="Event" asp-action="Index">Tất cả sự kiện</a>
-                            </li>
-                            <li class="@(currentController == "MyEvent" && currentAction == "Index" ? "active" : "")">
-                                <a asp-area="Student" asp-controller="MyEvent" asp-action="Index">Sự kiện của tôi</a>
-                            </li>
-                        </ul>
-                    </li>
 
-
-                    <li class="nav-item " title="Tin tức">
-                        <a asp-controller="Post" asp-action="Index" class="nav-link @(currentController == "Post"  ? "active" : "")">
-                            Tin tức
+                    <li class="nav-item ">
+                        <a asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
+                            Subject
                         </a>
                     </li><!-- End Events Nav -->
 
-                    <li class="dropdown">
-                        <a class="nav-dropdown @(currentController == "Club" || currentController == "MyClub" ? "active" : "")" asp-controller="Club" asp-action="Index">
-                            Câu lạc bộ/hội nhóm
-                            <i class="bi bi-chevron-down"></i>
+                    <li class="nav-item ">
+                        <a asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
+                            Quiz
                         </a>
-                        <ul>
-                            <li class="@(currentController == "Club" && currentAction == "Index" ? "active" : "")">
-                                <a asp-controller="Club" asp-action="Index">Tất cả câu lạc bộ/hội nhóm</a>
-                            </li>
-                            <li class="@(currentController == "MyClub" && currentAction == "Index" ? "active" : "")">
-                                <a asp-area="Student" asp-controller="MyClub" asp-action="Index">Câu lạc bộ/hội nhóm của tôi</a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a class="nav-dropdown @(currentController == "Achievement" || currentController == "MyAchievement" || currentController == "AchievementRequest" ? "active" : "")"
-                           asp-area="Student" asp-controller="MyAchievement" asp-action="Index">
-                            Thành tích
-                            <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul>
-                            <li class="@(currentController == "MyAchievement"  ? "active" : "")">
-                                <a asp-area="Student" asp-controller="MyAchievement" asp-action="Index">Thành tích của tôi</a>
-                            </li>
-                            <li class="@(currentController == "AchievementRequest"  ? "active" : "")">
-                                <a asp-area="Student" asp-controller="AchievementRequest" asp-action="Index">Yêu cầu duyệt thành tích</a>
-                            </li>
-                            <li class="@(currentController == "Achievement" && currentAction == "Index" ? "active" : "")">
-                                <a asp-controller="Achievement" asp-action="Index">Thành tích của cá nhân và câu lạc bộ khác</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item" title="Liên hệ">
-                        <a asp-controller="IcPdp" asp-action="Index" class="nav-link @(currentController == "IcPdp"  ? "active" : "")">
-                            Liên hệ
+                    </li><!-- End Events Nav -->
+                    <li class="nav-item">
+                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
+                            Contact
                         </a>
                     </li><!-- End Clubs Nav -->
                 </ul>
+
             </nav><!-- .navbar -->
             <div class="navbar-mobile" style="display: contents;">
                 <a class="mobile-nav-toggle d-none" href="#" data-bs-toggle="dropdown">
@@ -122,40 +81,30 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
                     <li class="nav-item " title="Trang chủ">
                         <a asp-controller="Home" asp-action="Index" class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
-                            Trang chủ
+                            Home
                         </a>
                     </li><!-- End Home Nav -->
 
                     <li class="nav-item " title="Sự kiện">
-                        <a asp-controller="Event" asp-action="Index" class="nav-link @(currentController == "Event" ? "active" : "")">
-                            Sự kiện
+                        <a asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
+                            Subject
                         </a>
                     </li><!-- End Events Nav -->
 
                     <li class="nav-item " title="Tin tức">
-                        <a asp-controller="Post" asp-action="Index" class="nav-link @(currentController == "Post"  ? "active" : "")">
-                            Tin tức
+                        <a asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
+                            Quiz
                         </a>
                     </li><!-- End Events Nav -->
 
-                    <li class="nav-item" title="Câu lạc bộ">
-                        <a asp-controller="Club" asp-action="Index" class="nav-link @(currentController == "Club" ? "active" : "")">
-                            Câu lạc bộ/hội nhóm
-                        </a>
-                    </li><!-- End Clubs Nav -->
-
-                    <li class="nav-item" title="Thành tích">
-                        <a asp-controller="Achievement" asp-action="Index" class="nav-link @(currentController == "Achievement" && (currentAction == "Index" || currentAction == "Details") ? "active" : "")">
-                            Thành tích
-                        </a>
-                    </li><!-- End Clubs Nav -->
-
                     <li class="nav-item" title="Liên hệ">
-                        <a asp-controller="IcPdp" asp-action="Index" class="nav-link @(currentController == "IcPdp"  ? "active" : "")">
-                            Liên hệ
+                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
+                            Contact
                         </a>
                     </li><!-- End Clubs Nav -->
-
+                    <li class="nav-item px-3 py-2">
+                        <a class="btn btn-primary btn-signin nav-link color-white py-2" asp-controller="Authen" asp-action="SignIn">Sign In</a>
+                    </li><!-- End Clubs Nav -->
 
                 </ul><!-- End Profile Dropdown Items -->
 
@@ -172,7 +121,6 @@
                             <img src="@userInfo.AvatarUrl" alt="Profile" class="rounded-circle ">
                         }
                     </div>
-                    @*<span class="fw-bold fs-6">@userInfo.Fullname</span>*@
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -187,40 +135,17 @@
                     <li>
                         <a asp-area="Student" asp-controller="StudentProfile" asp-action="Events" class="dropdown-item d-flex align-items-center  @(currentController == "Shared" && currentAction == "Index" ? "active" : "")">
                             <i class="bi bi-person"></i>
-                            <span>Trang cá nhân</span>
+                            <span>User Profile</span>
                         </a>
                     </li>
 
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-
-                   
                     <li>
-                        <a asp-area="Student" asp-controller="Report" asp-action="Index" class="dropdown-item d-flex align-items-center  @(currentController == "Report" ? "active" : "")">
-                            <i class="bi bi-folder-symlink"></i>
-                            <span>Báo cáo hậu sự kiện</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-@*
-                    <li>
-                        <a asp-area="Student" asp-controller="QA" asp-action="Index" class="dropdown-item d-flex align-items-center @(currentController == "QA" && currentAction == "Index" ? "active" : "")">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Trợ giúp</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>*@
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" asp-controller="Authen" asp-action="LogOut">
+                        <a class="dropdown-item d-flex align-items-center" href="/SignOut">
                             <i class="bi bi-box-arrow-right"></i>
-                            <span>Đăng xuất</span>
+                            <span>Sign Out</span>
                         </a>
                     </li>
                 </ul><!-- End Profile Dropdown Items -->
@@ -228,100 +153,17 @@
         </div>
 
     </header><!-- End Header -->
-    <div class="modal fade" id="modal-image-view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="fw-bold">Xem ảnh</h4>
-                    <button type="button" class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="bi bi-x-circle-fill"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="center">
-                        <img id="image-view" class="img-fluid rounded image-view" src="" alt="" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <main id="main" class="main ">
         @RenderBody()
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
-
         <div class="footer-content">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6">
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-
-                        <ul>
-                            <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a asp-controller="Home" asp-action="Index">Trang chủ</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a asp-controller="Event" asp-action="Index">Sự kiện</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a asp-controller="Post" asp-action="Index">Tin tức</a>
-                            </li>
-                            <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a asp-controller="Club" asp-action="Index">Câu lạc bộ</a>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links mt-2 mt-lg-0">
-                        <ul>
-                            <li>
-                                <i class="bi bi-chevron-right"></i>
-                                <a asp-controller="Achievement" asp-action="Index">Thành tích</a>
-                            </li>
-                            <li><i class="bi bi-chevron-right"></i> <a asp-controller="IcPdp" asp-action="Index">Liên hệ</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a asp-controller="ProjectInfo" asp-action="Index">Đội ngũ phát triển</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-legal p-0 mt-2 mt-lg-0">
-                        <div class="container d-flex flex-column justify-content-startalign-items-center">
-
-                            <div class="footer-info">
-                                <h6>FPT Education</h6>
-                                <p>
-                                    <span>Hoa Lac High Tech Park, Hanoi, Vietnam</span> <br />
-                                    <span>Email: </span> fpteducation@fe.edu.vn
-                                </p>
-                            </div>
-
-                            <div class="d-flex flex-column align-items-center align-items-lg-start">
-                                <div class="copyright">
-                                    &copy; Copyright <strong><span>FPT Education</span></strong>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
+            <div class="text-center">
+                &copy; Copyright by <strong><span>Online Exam</span></strong>
             </div>
         </div>
-
-
     </footer><!-- End Footer -->
-
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/maxlength.js"></script>
     <script src="~/js/toast.js" asp-append-version="true"></script>

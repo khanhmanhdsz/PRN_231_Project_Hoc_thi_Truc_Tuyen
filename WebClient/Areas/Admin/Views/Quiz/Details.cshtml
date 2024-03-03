@@ -8,7 +8,6 @@
 @{
     List<QuestionVM> questions = Model.ItemVMs;
     QuizVM quiz = Model.QuizVM;
-    int index = 1;
 
     int totalRecord = (int)Model.TotalRecord;
     int totalPages = (int)Model.TotalPages;
@@ -21,8 +20,7 @@
     int startIndex = ((currentPage - 1) * pageSize) + 1;
     int endIndex = startIndex + pageSize - 1;
     if (endIndex > totalRecord) endIndex = totalRecord;
-
-    int ordinalNumber = 1;
+    int index = (currentPage - 1) * pageSize + 1;
 }
 
 <div class="pagetitle">
@@ -59,7 +57,7 @@
                     </a>
                     <button class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#model-import-excel">
                         <i class="bi bi-arrow-down"></i>
-                        <span>Import question</span>
+                        <span>Import questions</span>
                     </button>
                 </div>
             </div>
