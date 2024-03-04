@@ -1,0 +1,151 @@
+﻿@using ViewModels.Quizzes
+@using ViewModels.Questions
+@using ViewModels
+@using ViewModels.Paging
+@using ViewModels.QuestionHistories
+@using WebClient.Helpers
+@model QuestionPagingRequest
+
+@{
+    List<QuestionVM> questions = Model.ItemVMs;
+    Dictionary<int, string> questionHistory = new();
+
+    foreach (var item in questions)
+    {
+        questionHistory.Add(item.QuestionId.Value, "");
+    }
+    QuizVM quiz = Model.QuizVM;
+    int index = 0;
+}
+<div class="text-red fw-bold position-fixed timer-container">
+    <i class="bi bi-clock"></i>
+    <span id="timer">
+        @quiz.Duration
+    </span>
+</div>
+<section class="min-vh-100">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="mb-2">Taking Quiz</h2>
+            <span class="small-title">
+                Doing your best
+            </span>
+        </div>
+
+        <div class="section-content">
+            <div class="card p-4">
+                <div class="row">
+                    <div class="row text-center mb-3">
+                        <span class="fw-bold">@quiz.Title</span>
+                        <span class="fst-italic">@quiz.Description</span>
+                        <a>@quiz?.Subject?.SubjectName</a>
+
+                        <div>
+                            <i class="bi bi-calendar-event"></i>
+                            <span>@DateTime.Now</span>
+                        </div>
+                    </div>
+                    <form asp-area="Student" asp-controller="Quiz" asp-action="SubmitQuiz" method="post">
+                        <input type="hidden" name="quizId" />
+                        <div class="accordion" id="accordionFlush">
+                            @foreach (var question in questions)
+                            {
+                                <div class="accordion-item">
+                                    <h6 class="accordion-header px-3 pt-3 fw-bold" id="flush-heading-@question.QuestionId">
+                                        <span>@(index++)</span>
+                                        <span>. @question.Title</span>
+                                    </h6>
+                                    <div id="flush-@question.QuestionId" class="accordion-collapse"
+                                     aria-labelledby="flush-heading-@question.QuestionId"
+                                     data-bs-parent="#accordionFlush">
+                                        <div class="accordion-body">
+                                            <div class="d-flex flex-column">
+                                                <div class="form-check">
+                                                    <input onchange="onSelectOption('@question.QuestionId', 'A')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                       id="@(index + 1)">
+                                                    <label class="form-check-label">
+                                                        @question.AnswerA
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input onchange="onSelectOption('@question.QuestionId', 'B')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                       id="@(index + 100)">
+                                                    <label class="form-check-label">
+                                                        @question.AnswerB
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input onchange="onSelectOption('@question.QuestionId', 'C')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                       id="@(index + 1000)">
+                                                    <label class="form-check-label">
+                                                        @question.AnswerC
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input onchange="onSelectOption('@question.QuestionId', 'D')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                       id="@(index + 2000)">
+                                                    <label class="form-check-label">
+                                                        @question.AnswerD
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary me-2" type="button">Submit</button>
+                            <button class="btn btn-red" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+    // Set the countdown time to 10 minutes (in milliseconds)
+    const countdownTime = @quiz.Duration * 60 * 1000;
+    const countdownDate = new Date().getTime() + countdownTime;
+
+    const questions = @Html.Raw(Json.Serialize(questionHistory));;
+    // Update the countdown every 1 second
+    const timerInterval = setInterval(updateCountdown, 1000);
+
+    function onSelectOption(id, option) {
+        questions[id] = option;
+        console.log(questions);
+
+    }
+
+    function updateCountdown() {
+        // Get the current date and time
+        const currentDate = new Date().getTime();
+
+        // Calculate the remaining time
+        const timeDifference = countdownDate - currentDate;
+
+        // Calculate minutes and seconds
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Display the countdown in the "timer" div
+        const formattedMinutes = String(minutes).padStart(2, '0');
+        const formattedSeconds = String(seconds).padStart(2, '0');
+
+        // Display the countdown in the "timer" div
+        const timerElement = document.getElementById("timer");
+        timerElement.innerHTML = formattedMinutes + ": " + formattedSeconds;
+
+        // Check if the countdown is over
+        if (timeDifference < 0) {
+            clearInterval(timerInterval);
+            timerElement.innerHTML = "EXPIRED";
+        }
+    }
+</script>
+

@@ -1,0 +1,64 @@
+﻿@using ViewModels.Paging
+@using ViewModels.Subjects
+@model SubjectPagingRequest
+@{
+    var searchTerm = ViewData["searchTerm"] as string;
+}
+<section id="clubs" class="clubs min-vh-100">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="mb-2">Subjects</h2>
+            <span class="small-title">
+                Discovering our interesing subjects
+            </span>
+            <div class="filter">
+                <form asp-area="Admin" asp-controller="Subject" asp-action="Index" method="get">
+                    <div class="input-group">
+                        <input type="text" name="searchTerm" value="@searchTerm" class="form-control rounded-0 rounded-start" id="search-term" 
+                        placeholder="Enter subject name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary rounded-0 rounded-end">
+                                <span><i class="bi bi-search"></i> Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="section-content mt-2">
+            @if (Model != null && Model?.ItemVMs?.Count > 0)
+            {
+                <div class="row d-flex flex-row justify-content-center mb-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 ">
+                    @foreach (SubjectVM item in Model.ItemVMs)
+                    {
+                        <div class="col mb-4">
+                            <div class="card club-box mx-1" title="@item.SubjectName" data-bs-toggle="tooltip" data-bs-placement="top">
+                                <a asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId" target="_blank">
+                                    <div class="d-flex flex-column justify-content-center align-items-center club-title">
+                                        <i class="bi bi-book"></i>
+
+                                        <h6 class="club-name fs-15 fw-bold">@item.SubjectName</h6>
+                                        <h6 class="fs-14">@item.Description</h6>
+                                        <h6 class="fs-14"></h6>
+                                    </div>
+                                </a>
+                                <div class="center">
+                                    <div class="px-4 py-1 rounded orange-glowing d-flex align-items-center">
+                                        <a class="text-white" asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId" target="_blank">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <h6 class="fw-bold">Subjects not found.</h6>
+            }
+        </div>
+    </div>
+
+</section>
+

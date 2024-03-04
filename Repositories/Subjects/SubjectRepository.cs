@@ -60,7 +60,7 @@ namespace Repositories.Subjects
                 request.TotalPages = (int)Math.Ceiling(request.TotalRecord / (double)request.PageSize);
                 query = query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize).ToList();
 
-                request.Items = query.ToList();
+                request.Items = query;
             }
             catch (Exception e)
             {

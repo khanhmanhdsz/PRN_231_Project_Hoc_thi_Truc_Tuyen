@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVlc3Rpb25cVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Admin/Views/QuizHistory/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVpekhpc3RvcnlcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Admin/Views/Quiz/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVpelxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -106,6 +110,30 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/QuizHistory/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xRdWl6SGlzdG9yeVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/QuizHistory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xRdWl6SGlzdG9yeVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/Quiz/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xRdWl6XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/Quiz/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xRdWl6XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/Subject/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xTdWJqZWN0XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/Subject/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xTdWJqZWN0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/Downloads/FCMS-develop/FCMS-develop/PRN_231_Project_Hoc_thi_Truc_Tuyen/WebClient/Areas/Student/Views/_ViewImports.cshtml]

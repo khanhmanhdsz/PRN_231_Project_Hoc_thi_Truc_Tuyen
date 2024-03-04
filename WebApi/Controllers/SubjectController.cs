@@ -41,5 +41,47 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetSubjectById(int subjectId)
+        {
+            try
+            {
+                var subject = await _repository.GetSubjectById(subjectId);
+                if (subject != null)
+                {
+                    SubjectVM subjectVM = _mapper.Map<SubjectVM>(subject);
+                    return Ok(subjectVM);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetSubjects(SubjectPagingRequest request)
+        {
+            try
+            {
+
+                SubjectPagingRequest response = await _repository.GetSubjects(request);
+
+                if (response != null)
+                {
+                    response.ItemVMs = _mapper.Map<List<SubjectVM>>(response.Items);
+                    response.Items = null;
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return NotFound();
+            }
+        }
     }
 }

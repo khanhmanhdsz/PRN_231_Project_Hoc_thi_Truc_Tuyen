@@ -4,7 +4,6 @@
     {
         public string? SearchTerm { get; set; } = "";
         public string? OldSearchTerm { get; set; } = "";
-        public string? CampusId { get; set; } = "";
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public int TotalPages { get; set; } = 0;

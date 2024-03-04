@@ -1,0 +1,77 @@
+﻿@using ViewModels.Paging
+@using ViewModels.Quizzes
+@using ViewModels.Subjects
+@model QuizPagingRequest
+
+@{
+    SubjectVM subject = ViewData["Subject"] as SubjectVM;
+}
+
+<section id="clubs" class="clubs min-vh-100">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2 class="mb-2">Subject Details</h2>
+            <span class="small-title">
+                View subject details and quiz
+            </span>
+        </div>
+
+        <div class="section-content mt-2">
+            <div class="row">
+                <div class="col-sm-12 col-xl-4">
+                    <h6 class="text-center fw-bold">Subject Info</h6>
+
+                    <div class="card p-3 text-center">
+                        <i class="bi bi-book fs-1"></i>
+                        <h3>@subject.SubjectName</h3>
+                        <p>@subject.Description</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-8">
+                    <h6 class="text-center fw-bold">Quiz List</h6>
+                    @if (Model != null && Model?.ItemVMs?.Count > 0)
+                    {
+                        @foreach (QuizVM item in Model.ItemVMs)
+                        {
+                            <div class="card px-3 py-2" title="@item.Title" data-bs-toggle="tooltip" data-bs-placement="top">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <i class="bi bi-clipboard-check fs-2"></i>
+                                        </div>
+                                        <div >
+                                            <div class="d-flex flex-row ">
+                                                <h6 class="club-name fs-15 fw-bold">@item.Title</h6>
+                                            </div>
+                                            <div class="d-flex flex-row ">
+                                                <h6 class="fs-14 me-3">
+                                                    <i class="bi bi-question-circle"></i>
+                                                    <span>@item.Questions.Count</span>
+                                                </h6>
+                                                <h6 class="fs-14">
+                                                    <i class="bi bi-clock"></i>
+                                                    <span>@item.Duration</span>
+                                                    <span> minutes</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-primary me-2" asp-controller="Quiz" asp-action="Details" asp-route-quizId="@item.QuizId" target="_blank">Take quiz</a>
+                                        <a class="btn btn-secondary" asp-controller="Quiz" asp-action="Details" asp-route-quizId="@item.QuizId" target="_blank">History</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h6 class="fw-bold">Quizzes not found.</h6>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

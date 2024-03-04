@@ -1216,3 +1216,9 @@ ul.dropdown-menu.inner {
         height: 200px;
     }
 }
+.timer-container {
+    left: 20px;
+    top: 70px;
+    font-size: 18px;
+    z-index: 9999;
+}

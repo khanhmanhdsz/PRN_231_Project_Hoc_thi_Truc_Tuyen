@@ -67,6 +67,11 @@ namespace Repositories.Quizzes
                     || c.Description.ToLower().Contains(request.SearchTerm)).ToList();
                 }
 
+                //if (request.SubjectId != 0)
+                //{
+                //    query = query.Where(q => q.Subject?.SubjectId == request.SubjectId).ToList();
+                //}
+
                 //Set totoal pages for paging
                 request.TotalRecord = query.Count();
                 request.TotalPages = (int)Math.Ceiling(request.TotalRecord / (double)request.PageSize);
