@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+i3pSdDjDMS8/GHoRo/E0iP0uB960a4CcvSmXgULQ+E=",
+  "Hash": "KsUzSKQoclVSeS1YB+qxzE/AaJLa5DTRpxmZ+/CzMrU=",
   "Source": "WebClient",
   "BasePath": "_content/WebClient",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\icons\\info.svg"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\WebClient\\wwwroot\\assets\\icons\\programming.svg",
+      "SourceId": "WebClient",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\WebClient\\wwwroot\\",
+      "BasePath": "_content/WebClient",
+      "RelativePath": "assets/icons/programming.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\icons\\programming.svg"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\Downloads\\FCMS-develop\\FCMS-develop\\PRN_231_Project_Hoc_thi_Truc_Tuyen\\WebClient\\wwwroot\\assets\\icons\\success.svg",

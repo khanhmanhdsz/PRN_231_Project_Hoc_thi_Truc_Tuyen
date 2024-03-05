@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ViewModels.Paging;
 using ViewModels.QuizHistories;
 using WebClient.Helpers;
+using WebClient.Models;
 using WebClient.Services;
 
 namespace WebClient.Areas.Student.Controllers
@@ -29,6 +30,7 @@ namespace WebClient.Areas.Student.Controllers
             try
             {
                 request.SearchTerm = StringHelper.RefinedSearchTerm(request.SearchTerm);
+                request.Email = SessionHelper.GetObject<UserInfo>(HttpContext.Session, "UserInfo").Email;
 
                 var response = await _clientService.Post<QuizHistoryPagingRequest>(ApiPaths.Student + "/QuizHistory/GetQuizHistories", request);
                 if (response == null)
@@ -46,14 +48,13 @@ namespace WebClient.Areas.Student.Controllers
             }
         }
         [HttpGet]
-        [Route("/Student/QuizHistory/Details")]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int quizId)
         {
             try
             {
 
 
-                var response = await _clientService.Get<QuizHistory>($"{ApiPaths.Student}/QuizHistory/GetQuizHistoryById?id=" + id);
+                var response = await _clientService.Get<QuizHistory>($"{ApiPaths.Student}/QuizHistory/GetQuizHistoryById?id=" + quizId);
                 if (response == null)
                 {
                     ToastHelper.ShowWarning(TempData, $"Quiz doesn't exist");

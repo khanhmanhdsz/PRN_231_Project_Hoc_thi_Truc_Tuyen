@@ -91,7 +91,7 @@ namespace WebClient.Areas.Admin.Controllers
             try
             {
                 request.PageSize = 5;
-                if (request.QuizId == 0)
+                if (request.QuizId <= 0)
                 {
                     ToastHelper.ShowInfo(TempData, "Please choose a quiz to view");
                     return RedirectToAction("Index");

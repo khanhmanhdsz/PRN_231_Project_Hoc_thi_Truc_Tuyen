@@ -99,7 +99,7 @@ namespace WebClient.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     var apiPath = $"{ApiPaths.Admin}/Account/UpdateAccountManual";
-                    ResponseVM response = await _clientService.Post<ResponseVM>(apiPath, request);
+                    ResponseVM response = await _clientService.Put<ResponseVM>(apiPath, request);
                     if (response == null)
                     {
                         throw new Exception("Server error");
@@ -164,10 +164,12 @@ namespace WebClient.Areas.Admin.Controllers
                 {
                     throw new Exception("Choose a student to view their information");
                 }
-
+                var request = new QuizHistoryPagingRequest() { Email= email };
+                var response = await _clientService.Post<QuizHistoryPagingRequest>(ApiPaths.Admin + "/QuizHistory/GetQuizHistories", request);
 
                 AccountVM? account = await _clientService.Get<AccountVM>($"{ApiPaths.Admin}/Account/GetAccountByEmail?email={email}");
 
+                ViewData["response"] = response;
                 if (account == null)
                 {
                     throw new Exception($"Student with '{email}' doesn't exist.");

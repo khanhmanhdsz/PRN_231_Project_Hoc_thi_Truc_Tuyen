@@ -67,8 +67,8 @@
                         </a>
                     </li><!-- End Events Nav -->
                     <li class="nav-item">
-                        <a  asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
-                            Contact
+                        <a asp-area="Student" asp-controller="QuizHistory" asp-action="Index" class="nav-link  @(currentController == "QuizHistory" && currentAction == "Index" ? "active" : "")">
+                            <span>Quiz History</span>
                         </a>
                     </li><!-- End Clubs Nav -->
                 </ul>
@@ -97,9 +97,9 @@
                         </a>
                     </li><!-- End Events Nav -->
 
-                    <li class="nav-item" title="Liên hệ">
-                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
-                            Contact
+                    <li class="nav-item">
+                        <a asp-area="Student" asp-controller="QuizHistory" asp-action="Index" class="nav-link  @(currentController == "QuizHistory" && currentAction == "Index" ? "active" : "")">
+                            <span>Quiz History</span>
                         </a>
                     </li><!-- End Clubs Nav -->
                     <li class="nav-item px-3 py-2">
@@ -127,16 +127,6 @@
                     <li class="dropdown-header">
                         <h6>@userInfo.Fullname</h6>
                         <span>@userInfo.Role</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a asp-area="Student" asp-controller="QuizHistory" asp-action="Index" class="dropdown-item d-flex align-items-center  @(currentController == "Shared" && currentAction == "Index" ? "active" : "")">
-                            <i class="bi bi-person"></i>
-                            <span>Quiz History</span>
-                        </a>
                     </li>
 
                     <li>

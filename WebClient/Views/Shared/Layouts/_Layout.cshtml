@@ -54,21 +54,16 @@
                     </li><!-- End Home Nav -->
 
                     <li class="nav-item ">
-                        <a asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
+                        <a asp-area="Student" asp-controller="Subject" asp-action="Index" class="nav-link @(currentController == "Subject" ? "active" : "")">
                             Subject
                         </a>
                     </li><!-- End Events Nav -->
 
                     <li class="nav-item ">
-                        <a asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
+                        <a asp-area="Student" asp-controller="Quiz" asp-action="Index" class="nav-link @(currentController == "Quiz"  ? "active" : "")">
                             Quiz
                         </a>
                     </li><!-- End Events Nav -->
-                    <li class="nav-item">
-                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
-                            Contact
-                        </a>
-                    </li><!-- End Clubs Nav -->
                 </ul>
 
             </nav><!-- navbar -->
@@ -95,11 +90,6 @@
                         </a>
                     </li><!-- End Events Nav -->
 
-                    <li class="nav-item" title="Liên hệ">
-                        <a asp-controller="Contact" asp-action="Index" class="nav-link @(currentController == "Contact"  ? "active" : "")">
-                            Contact
-                        </a>
-                    </li><!-- End Clubs Nav -->
                     <li class="nav-item px-3 py-2">
                         <a class="btn btn-primary btn-signin nav-link color-white py-2" asp-controller="Authen" asp-action="SignIn">Sign In</a>
                     </li><!-- End Clubs Nav -->

@@ -26,18 +26,16 @@ namespace Repositories.QuizHistories
         {
             try
             {
-                var query = await _context.QuizHistories.Include(q => q.Quiz)
-                    .ThenInclude(q => q.Subject).ToListAsync();
-                //if (!String.IsNullOrEmpty(request.SearchTerm))
-                //{
-                //    query = query.Where(c => c.Title.ToLower().Contains(request.SearchTerm)
-                //    || c.Description.ToLower().Contains(request.SearchTerm)).ToList();
-                //}
-
-                //if (request.SubjectId != 0)
-                //{
-                //    query = query.Where(q => q.Subject?.SubjectId == request.SubjectId).ToList();
-                //}
+                var query = await _context.QuizHistories
+                    .Include(q => q.Account)
+                    .Include(q => q.Quiz)
+                    .ThenInclude(q => q.Subject)
+                    .Include(q => q.QuestionHistories)
+                    .ToListAsync();
+                if (!String.IsNullOrEmpty(request.Email))
+                {
+                    query = query.Where(x => x.Account.Email.Equals(request.Email)).ToList();
+                }
 
                 //Set totoal pages for paging
                 request.TotalRecord = query.Count();

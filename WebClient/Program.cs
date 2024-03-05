@@ -26,7 +26,7 @@ builder.Services.AddAuthentication((options =>
 }))
 .AddCookie(options =>
 {
-    options.LoginPath = "/SignIn";
+    options.LoginPath = "/Authen/SignIn";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     options.SlidingExpiration = true;
     options.AccessDeniedPath = "/Error/Error403";

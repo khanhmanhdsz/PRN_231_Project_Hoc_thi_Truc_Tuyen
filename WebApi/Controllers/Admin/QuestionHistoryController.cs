@@ -1,6 +1,12 @@
-﻿namespace WebApi.Controllers.Admin
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebApi.Controllers.Admin
 {
-    public class QuestionHistoryController
+    [Authorize(Roles = "Admin")]
+    [Route("api/Admin/[controller]/[action]")]
+    [ApiController]
+    public class QuestionHistoryController : ControllerBase
     {
     }
 }
