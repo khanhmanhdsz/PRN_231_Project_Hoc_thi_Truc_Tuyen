@@ -12,7 +12,11 @@ namespace Repositories.Quizzes
     {
         Task<QuizPagingRequest> GetQuizzes(QuizPagingRequest request);
         Task<QuestionPagingRequest> GetQuizById(QuestionPagingRequest request);
+        Task<Quiz> GetQuizById(int id);
+
         Task<bool> AddQuiz(Quiz quiz);
         Task<bool> UpdateQuiz(Quiz quiz);
+
+        Task<int> SubmitQuiz(QuizHistory history);
     }
 }

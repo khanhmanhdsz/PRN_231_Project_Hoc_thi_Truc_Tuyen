@@ -16,13 +16,13 @@ namespace ViewModels.Quizzes
 
         [Required(ErrorMessage = "* Please enter quiz title")]
         [StringLength(100)]
-        public string Title { get; set; } = string.Empty;
+        public string? Title { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "* Please enter quiz description")]
         [StringLength(100)]
-        public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; } = string.Empty;
 
-        public int Duration { get; set; }
+        public int? Duration { get; set; }
 
         public DateTime? CreatedDate { get; set; }
         public int? SubjectId { get; set; }

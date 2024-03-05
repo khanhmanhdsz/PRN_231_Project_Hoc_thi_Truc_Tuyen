@@ -1,8 +1,15 @@
 ﻿using Core.Constants;
+using Core.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using ViewModels;
 using ViewModels.Paging;
+using ViewModels.QuestionHistories;
+using ViewModels.QuizHistories;
+using ViewModels.Quizzes;
 using WebClient.Helpers;
+using WebClient.Models;
 using WebClient.Services;
 
 namespace WebClient.Areas.Student.Controllers
@@ -17,6 +24,29 @@ namespace WebClient.Areas.Student.Controllers
         public QuizController(ClientService clientService)
         {
             _clientService = clientService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Index(QuizPagingRequest request)
+        {
+
+            try
+            {
+                request.SearchTerm = StringHelper.RefinedSearchTerm(request.SearchTerm);
+
+                var response = await _clientService.Post<QuizPagingRequest>(ApiPaths.Student + "/Quiz/GetQuizzes", request);
+                if (response == null)
+                {
+                    throw new Exception("Server error");
+                }
+
+                return View(response);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                ToastHelper.ShowError(TempData, ex.Message);
+                return View(request);
+            }
         }
 
 
@@ -48,10 +78,36 @@ namespace WebClient.Areas.Student.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [HttpPost]
-        public async Task<IActionResult> SubmitQuiz()
+        [HttpGet]
+        [Route("/Student/SubmitQuiz")]
+        public async Task<int> SubmitQuiz(string json, int quizId)
         {
-            return View();
+            try
+            {
+                Console.WriteLine(json);
+                QuizHistoryVM quizHistory = new();
+                List<QuestionHistoryVM> questionHistories = JsonSerializer.Deserialize<List<QuestionHistoryVM>>(json);
+                quizHistory.QuestionHistories = questionHistories;
+                quizHistory.QuizId = quizId;
+                quizHistory.Id = SessionHelper.GetObject<UserInfo>(HttpContext.Session, "UserInfo").UserId;
+
+                var response = await _clientService.Post<ResponseVM>($"{ApiPaths.Student}/Quiz/SubmitQuiz", quizHistory);
+
+                if(response == null)
+                {
+                    throw new Exception("cannot submit quiz");
+                }
+                Console.WriteLine("------" + response.Message);
+                int quizHistoryId = 0;
+                int.TryParse(response.Message, out quizHistoryId);
+
+                return quizHistoryId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
         }
 
     }

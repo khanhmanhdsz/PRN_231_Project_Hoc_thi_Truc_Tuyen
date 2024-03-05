@@ -8,14 +8,20 @@
 
 @{
     List<QuestionVM> questions = Model.ItemVMs;
-    Dictionary<int, string> questionHistory = new();
+
+    List<object> questionHistory = new();
 
     foreach (var item in questions)
     {
-        questionHistory.Add(item.QuestionId.Value, "");
+        questionHistory.Add(new
+        {
+            questionId = item.QuestionId,
+            selectedOption = string.Empty,
+        });
     }
     QuizVM quiz = Model.QuizVM;
-    int index = 0;
+    int index = 1;
+    int ordinalNumber = 1;
 }
 <div class="text-red fw-bold position-fixed timer-container">
     <i class="bi bi-clock"></i>
@@ -27,9 +33,6 @@
     <div class="container" data-aos="fade-up">
         <div class="section-header">
             <h2 class="mb-2">Taking Quiz</h2>
-            <span class="small-title">
-                Doing your best
-            </span>
         </div>
 
         <div class="section-content">
@@ -52,7 +55,7 @@
                             {
                                 <div class="accordion-item">
                                     <h6 class="accordion-header px-3 pt-3 fw-bold" id="flush-heading-@question.QuestionId">
-                                        <span>@(index++)</span>
+                                        <span>@(ordinalNumber++)</span>
                                         <span>. @question.Title</span>
                                     </h6>
                                     <div id="flush-@question.QuestionId" class="accordion-collapse"
@@ -61,28 +64,28 @@
                                         <div class="accordion-body">
                                             <div class="d-flex flex-column">
                                                 <div class="form-check">
-                                                    <input onchange="onSelectOption('@question.QuestionId', 'A')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                    <input onchange="onSelectOption('@index', 'A')" class="form-check-input" type="radio" name="@question.QuestionId"
                                                        id="@(index + 1)">
                                                     <label class="form-check-label">
                                                         @question.AnswerA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input onchange="onSelectOption('@question.QuestionId', 'B')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                    <input onchange="onSelectOption('@index', 'B')" class="form-check-input" type="radio" name="@question.QuestionId"
                                                        id="@(index + 100)">
                                                     <label class="form-check-label">
                                                         @question.AnswerB
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input onchange="onSelectOption('@question.QuestionId', 'C')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                    <input onchange="onSelectOption('@index', 'C')" class="form-check-input" type="radio" name="@question.QuestionId"
                                                        id="@(index + 1000)">
                                                     <label class="form-check-label">
                                                         @question.AnswerC
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input onchange="onSelectOption('@question.QuestionId', 'D')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                    <input onchange="onSelectOption('@index++', 'D')" class="form-check-input" type="radio" name="@question.QuestionId"
                                                        id="@(index + 2000)">
                                                     <label class="form-check-label">
                                                         @question.AnswerD
@@ -95,8 +98,8 @@
                             }
                         </div>
                         <div class="mt-3">
-                            <button class="btn btn-primary me-2" type="button">Submit</button>
-                            <button class="btn btn-red" type="button">Cancel</button>
+                            <button onclick="onSubmitQuiz()" class="btn btn-primary me-2" type="button">Submit</button>
+                            <button onclick="onCancelQuiz()" class="btn btn-red" type="button">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -116,10 +119,40 @@
     // Update the countdown every 1 second
     const timerInterval = setInterval(updateCountdown, 1000);
 
-    function onSelectOption(id, option) {
-        questions[id] = option;
+    function onSelectOption(index, option) {
+        questions[index - 1].selectedOption = option;
         console.log(questions);
 
+    }
+
+    function onSubmitQuiz() {
+        var userResponse = window.confirm("Are you sure you want to submit quiz?");
+
+        // Check the user's response
+        if (userResponse) {
+            console.log("User clicked 'OK' (Yes).");
+
+            const url = "/Student/SubmitQuiz?json=" + JSON.stringify(questions) + "&&quizId=" + @Html.Raw(@Model.QuizId) ;
+            fetch(url).then(response => response.text())
+                .then(result => {
+                    console.log(result);
+                    window.location.href = "/Student/QuizHistory/Details?id=" + result;
+                });
+        } else {
+            console.log("User clicked 'Cancel' (No).");
+        }
+    }
+
+    function onCancelQuiz() {
+        var userResponse = window.confirm("All your process will be lost, do you want to proceed?");
+
+        // Check the user's response
+        if (userResponse) {
+            console.log("User clicked 'OK' (Yes).");
+            window.history.back();
+        } else {
+            console.log("User clicked 'Cancel' (No).");
+        }
     }
 
     function updateCountdown() {

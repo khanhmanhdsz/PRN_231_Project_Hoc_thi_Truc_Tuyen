@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using ViewModels.Questions;
 
 namespace ViewModels.QuestionHistories
 {
@@ -11,7 +13,13 @@ namespace ViewModels.QuestionHistories
     {
         public int? QuizHistoryId { get; set; }
         public int? QuestionHistoryId { get; set; }
-        public string? SelectedAnswer{ get; set; }
-        public int QuestionId { get; set; }
+
+        [JsonPropertyName("selectedOption")]
+        public string? SelectedOption { get; set; }
+
+        [JsonPropertyName("questionId")]
+        public int? QuestionId { get; set; }
+        public QuestionVM? QuestionVM { get; set; }
+        public bool? IsCorrect { get; set; } 
     }
 }

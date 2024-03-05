@@ -3,7 +3,7 @@
     public class QuestionHistory
     {
         public int QuestionHistoryId { get; set; }
-        public int SelectedAnswerId { get; set; }
+        public string SelectedOption { get; set; }
         public int QuestionId { get; set; }
         public int QuizHistoryId { get; set; }
         public bool IsCorrect { get; set; }

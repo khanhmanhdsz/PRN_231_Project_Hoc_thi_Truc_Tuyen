@@ -34,7 +34,8 @@ namespace WebApi.Config
                 config.CreateMap<QuizVM, Quiz>();
 
                 // Mapper QuizHistory
-                config.CreateMap<QuizHistory, QuizHistoryVM>();
+                config.CreateMap<QuizHistory, QuizHistoryVM>()
+                                        .ForMember(dest => dest.Quiz, opt => opt.MapFrom(src => src.Quiz));
                 config.CreateMap<QuizHistoryVM, QuizHistory>();
 
                 // Mapper Subject

@@ -1,5 +1,6 @@
 ﻿using DataAccess.FcmsContext;
 using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,60 @@ namespace Repositories.QuizHistories
             throw new NotImplementedException();
         }
 
-        public Task<QuizHistoryPagingRequest> GetQuizHistories(QuizHistoryPagingRequest request)
+        public async Task<QuizHistoryPagingRequest> GetQuizHistories(QuizHistoryPagingRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = await _context.QuizHistories.Include(q => q.Quiz)
+                    .ThenInclude(q => q.Subject).ToListAsync();
+                //if (!String.IsNullOrEmpty(request.SearchTerm))
+                //{
+                //    query = query.Where(c => c.Title.ToLower().Contains(request.SearchTerm)
+                //    || c.Description.ToLower().Contains(request.SearchTerm)).ToList();
+                //}
+
+                //if (request.SubjectId != 0)
+                //{
+                //    query = query.Where(q => q.Subject?.SubjectId == request.SubjectId).ToList();
+                //}
+
+                //Set totoal pages for paging
+                request.TotalRecord = query.Count();
+                request.TotalPages = (int)Math.Ceiling(request.TotalRecord / (double)request.PageSize);
+                query = query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+                request.Items = query.ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            return request;
         }
 
-        public Task<QuizHistory> GetQuizHistoryById(int id)
+        public async Task<QuizHistory> GetQuizHistoryById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                QuizHistory? quiz = await _context.QuizHistories
+                    .Include(x => x.Quiz)
+                    .Include(x => x.Account)
+                    .SingleOrDefaultAsync(x => x.QuizHistoryId == id);
+
+
+                quiz.QuestionHistories = _context.QuestionHistories
+                    .Include(x => x.Question)
+                    .Where(x => x.QuizHistoryId == quiz.QuizHistoryId).ToList();
+
+                Console.WriteLine(quiz.QuestionHistories.Count);
+
+                return quiz;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
         }
 
         public Task<bool> UpdateQuizHistory(QuizHistory quizHistory)

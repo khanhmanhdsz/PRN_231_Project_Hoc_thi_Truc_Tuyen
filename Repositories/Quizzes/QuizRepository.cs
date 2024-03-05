@@ -56,6 +56,20 @@ namespace Repositories.Quizzes
             return request;
         }
 
+        public async Task<Quiz> GetQuizById(int id)
+        {
+            try
+            {
+                var quiz = await _context.Quizzes.Include(q => q.Questions).SingleOrDefaultAsync(q => q.QuizId == id);
+                return quiz;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+                return null;
+            }
+        }
+
         public async Task<QuizPagingRequest> GetQuizzes(QuizPagingRequest request)
         {
             try
@@ -84,6 +98,24 @@ namespace Repositories.Quizzes
                 Console.WriteLine($"Error: {e.Message}");
             }
             return request;
+        }
+
+        public async Task<int> SubmitQuiz(QuizHistory history)
+        {
+            try
+            {
+                _context.Add(history);
+
+                if(await _context.SaveChangesAsync() > 0)
+                {
+                    return history.QuizHistoryId;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            return 0;
         }
 
         public async Task<bool> UpdateQuiz(Quiz quiz)

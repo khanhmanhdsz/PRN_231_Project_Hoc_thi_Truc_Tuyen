@@ -13,6 +13,5 @@ namespace Repositories.QuizHistories
         Task<QuizHistoryPagingRequest> GetQuizHistories(QuizHistoryPagingRequest request);
         Task<QuizHistory> GetQuizHistoryById(int id);
         Task<bool> AddQuizHistory(QuizHistory quizHistory);
-        Task<bool> UpdateQuizHistory(QuizHistory quizHistory);
     }
 }

@@ -33,10 +33,10 @@
                     @foreach (SubjectVM item in Model.ItemVMs)
                     {
                         <div class="col mb-4">
-                            <div class="card club-box mx-1" title="@item.SubjectName" data-bs-toggle="tooltip" data-bs-placement="top">
-                                <a asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId" target="_blank">
+                            <div class="card p-3" title="@item.SubjectName" data-bs-toggle="tooltip" data-bs-placement="top">
+                                <a asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId">
                                     <div class="d-flex flex-column justify-content-center align-items-center club-title">
-                                        <i class="bi bi-book"></i>
+                                        <i class="bi bi-book fs-2"></i>
 
                                         <h6 class="club-name fs-15 fw-bold">@item.SubjectName</h6>
                                         <h6 class="fs-14">@item.Description</h6>
@@ -44,8 +44,8 @@
                                     </div>
                                 </a>
                                 <div class="center">
-                                    <div class="px-4 py-1 rounded orange-glowing d-flex align-items-center">
-                                        <a class="text-white" asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId" target="_blank">View</a>
+                                    <div class="px-4 py-1 btn btn-primary rounded d-flex align-items-center">
+                                        <a class="text-white" asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId" >View</a>
                                     </div>
                                 </div>
                             </div>

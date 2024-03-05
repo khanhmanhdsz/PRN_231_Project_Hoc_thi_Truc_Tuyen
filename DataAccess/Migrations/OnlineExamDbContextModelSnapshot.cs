@@ -107,19 +107,19 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b149d199-41e3-47b3-b868-d9c93f159e31",
+                            ConcurrencyStamp = "1143c4ef-7744-4952-8395-1848283859e2",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Admin",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 3, 18, 28, 16, 157, DateTimeKind.Local).AddTicks(1559),
+                            JoinedDate = new DateTime(2024, 3, 6, 1, 11, 30, 638, DateTimeKind.Local).AddTicks(9457),
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ICPDPHN",
                             Password = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG6HjC1trh1AG04pAOu5qk2XLHaTz2j3saJUjM0nYvNN2tCzO+6FneHfIUHsG3/Tfw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO6Z0/b1+/MgzH7bbYF5mvjDeCs6f9ws8g6QHG8nQSykYpcgvDpHNgARyS6ffzcqow==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "320b3738-65cb-4065-9d22-72ae8d459957",
+                            SecurityStamp = "a1661024-c874-4914-afaf-adeea32dc487",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -127,19 +127,19 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "936111a9-7e43-47c5-aeab-4f930049cd90",
+                            ConcurrencyStamp = "e4b27caa-345a-47f8-9fb6-71557c57332a",
                             Email = "lamnt@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Nguyen Thanh Lam",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 3, 18, 28, 16, 159, DateTimeKind.Local).AddTicks(8642),
+                            JoinedDate = new DateTime(2024, 3, 6, 1, 11, 30, 640, DateTimeKind.Local).AddTicks(2325),
                             LockoutEnabled = false,
                             NormalizedEmail = "LAMNT@GMAIL.COM",
                             NormalizedUserName = "LAMNT",
                             Password = "lamnt",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBxRFlCnPTSyjt9qClj3cE7PBytQ2dTz6aU5imBlrqyop87lpWOrAxZhPZNB3oLRBw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOAZl8u+twuqLXRoKDGFNqY2B3whQCyTg/5luetD3TExxnVeWQtINp0sh0IsYAqdcQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1fd21c74-019f-4d2a-a235-79dfcba25013",
+                            SecurityStamp = "19678183-7551-4c6a-97e5-01e7c906b290",
                             TwoFactorEnabled = false,
                             UserName = "lamnt"
                         });
@@ -209,8 +209,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("QuizHistoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SelectedAnswerId")
-                        .HasColumnType("int");
+                    b.Property<string>("SelectedOption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionHistoryId");
 
@@ -341,14 +342,14 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"),
-                            ConcurrencyStamp = "774e81bf-43dc-4a89-958b-f5b77217a257",
+                            ConcurrencyStamp = "882ea332-2fb7-40e7-b161-ba911696cd21",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"),
-                            ConcurrencyStamp = "4cc97bae-4a99-4a42-a3a5-adb309cf8051",
+                            ConcurrencyStamp = "9c4967a0-1795-41c0-9900-7efebb3d4290",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });

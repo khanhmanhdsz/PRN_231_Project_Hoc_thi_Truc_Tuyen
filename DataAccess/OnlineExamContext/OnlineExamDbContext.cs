@@ -53,7 +53,7 @@ namespace DataAccess.FcmsContext
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Question> QuizHistories { get; set; }
+        public DbSet<QuizHistory> QuizHistories { get; set; }
         public DbSet<QuestionHistory> QuestionHistories { get; set; }
  
         #endregion
