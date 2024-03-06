@@ -39,7 +39,7 @@ namespace Repositories.Quizzes
         {
             try
             {
-                var quiz = await _context.Quizzes.SingleOrDefaultAsync(q => q.QuizId == request.QuizId);
+                var quiz = await _context.Quizzes.Include(q =>q.Subject).SingleOrDefaultAsync(q => q.QuizId == request.QuizId);
                 var query = await _context.Questions.Where(q => q.QuizId == request.QuizId).ToListAsync();
 
                 request.Quiz = quiz;
@@ -129,7 +129,8 @@ namespace Repositories.Quizzes
                 {
                     existingQuiz.Title = quiz.Title;
                     existingQuiz.Description = quiz.Description;
-
+                    existingQuiz.Duration = quiz.Duration;
+                    existingQuiz.SubjectId = quiz.SubjectId;
                     _context.Update(existingQuiz);
                     if (await _context.SaveChangesAsync() > 0)
                     {

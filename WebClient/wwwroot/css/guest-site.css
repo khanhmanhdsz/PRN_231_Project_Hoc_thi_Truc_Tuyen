@@ -1820,7 +1820,22 @@ section {
 /*--------------------------------------------------------------
 # Paging
 --------------------------------------------------------------*/
+.text-overflow h6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.text-overflow .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    height: 35px;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .link-paging {
     background-color: white;

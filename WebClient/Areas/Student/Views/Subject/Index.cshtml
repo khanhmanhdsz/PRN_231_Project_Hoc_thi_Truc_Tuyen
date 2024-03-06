@@ -33,11 +33,10 @@
                         <div class="col mb-4">
                             <div class="card p-3" title="@item.SubjectName" data-bs-toggle="tooltip" data-bs-placement="top">
                                 <a asp-controller="Subject" asp-action="Details" asp-route-subjectId="@item.SubjectId">
-                                    <div class="d-flex flex-column justify-content-center align-items-center club-title">
+                                    <div class="d-flex flex-column justify-content-center align-items-center text-overflow text-center">
                                         <i class="bi bi-book fs-2"></i>
-
-                                        <h6 class="club-name fs-15 fw-bold">@item.SubjectName</h6>
-                                        <h6 class="fs-14">@item.Description</h6>
+                                        <h6 class="club-name fs-15 fw-bold title">@item.SubjectName</h6>
+                                        <h6 class="fs-14 ">@item.Description</h6>
                                         <h6 class="fs-14"></h6>
                                     </div>
                                 </a>

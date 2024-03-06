@@ -29,11 +29,15 @@
 
 <div class="card p-3">
     <div class="row">
-
+        <div>
+            <a asp-area="Admin" asp-controller="Quiz" asp-action="Update" asp-route-quizId="@Model.QuizId" class="position-absolute w-10 btn px-2 py-1 btn-outline-danger">
+                <i class="bi bi-pencil"></i>
+            </a>
+        </div>
         <div class="row text-center">
+            <a class="fw-bold" asp-area="Admin" asp-controller="Subject" asp-action="Details" asp-route-subjectId="@quiz.SubjectId">@quiz?.Subject?.SubjectName</a>
             <span class="fw-bold">@quiz.Title</span>
             <span class="fst-italic">@quiz.Description</span>
-            <a>@quiz?.Subject?.SubjectName</a>
             <div>
                 <i class="bi bi-clock"></i>
                 <span>
@@ -63,92 +67,99 @@
             </div>
         </div>
         <!-- Accordion without outline borders -->
-        <div class="accordion" id="accordionFlush">
+        @if (totalRecord > 0)
+        {
+            <div class="accordion" id="accordionFlush">
 
-            @foreach (var question in questions)
-            {
-                <div class="accordion-item">
-                    <h6 class="accordion-header fw-bold px-3 pt-3" id="flush-heading-@question.QuestionId">
-                        <span>@(index++)</span>
-                        <span>. @question.Title</span>
-                    </h6>
-                    <div id="flush-@question.QuestionId" class="accordion-collapse"
+                @foreach (var question in questions)
+                {
+                    <div class="accordion-item">
+                        <h6 class="accordion-header fw-bold px-3 pt-3" id="flush-heading-@question.QuestionId">
+                            <span>@(index++)</span>
+                            <span>. @question.Title</span>
+                        </h6>
+                        <div id="flush-@question.QuestionId" class="accordion-collapse"
                      aria-labelledby="flush-heading-@question.QuestionId"
                      data-bs-parent="#accordionFlush">
-                        <div class="accordion-body">
-                            <div class="d-flex flex-column">
-                                <div>
-                                    <span>A.</span>
-                                    <span>@question.AnswerA</span>
+                            <div class="accordion-body">
+                                <div class="d-flex flex-column">
+                                    <div>
+                                        <span>A.</span>
+                                        <span>@question.AnswerA</span>
+                                    </div>
+                                    <div>
+                                        <span>B. </span>
+                                        <span>@question.AnswerB</span>
+                                    </div>
+                                    <div>
+                                        <span>C.</span>
+                                        <span>@question.AnswerC</span>
+                                    </div>
+                                    <div>
+                                        <span> D.</span>
+                                        <span>@question.AnswerD</span>
+                                    </div>
                                 </div>
                                 <div>
-                                    <span>B. </span>
-                                    <span>@question.AnswerB</span>
+                                    <span class="text-red">Correct answer: @question.CorrectAnswer</span>
                                 </div>
-                                <div>
-                                    <span>C.</span>
-                                    <span>@question.AnswerC</span>
+                                <div class="mt-2">
+                                    <button onclick="onRemoveQuestion('@Model.QuizId', '@question.QuestionId',  '@index')" type="button" class="btn btn-red">
+                                        <i class="bi bi-trash"></i>
+                                        <span>Remove</span>
+                                    </button>
+                                    <a asp-controller="Question" asp-action="Update" asp-route-quizId="@Model.QuizId" asp-route-questionId="@question.QuestionId" class="btn btn-primary ms-2">
+                                        <i class="bi bi-pencil"></i>
+                                        <span>Edit</span>
+                                    </a>
                                 </div>
-                                <div>
-                                    <span> D.</span>
-                                    <span>@question.AnswerD</span>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-red">Correct answer: @question.CorrectAnswer</span>
-                            </div>
-                            <div class="mt-2">
-                                <button onclick="onRemoveQuestion('@Model.QuizId', '@question.QuestionId',  '@index')" type="button" class="btn btn-red">
-                                    <i class="bi bi-trash"></i>
-                                    <span>Remove</span>
-                                </button>
-                                <a asp-controller="Question" asp-action="Update" asp-route-quizId="@Model.QuizId" asp-route-questionId="@question.QuestionId" class="btn btn-primary ms-2">
-                                    <i class="bi bi-pencil"></i>
-                                    <span>Edit</span>
-                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            }
-        </div>
-        <div class="row d-flex justify-content-center align-items-center mt-3">
-            <div class="col d-flex flex-row">
-                <div class="center">
-                    <span class="fst-italic ">Show <strong>@startIndex - @endIndex</strong> in total of <strong> @totalRecord</strong> questions</span>
-                </div>
+                }
             </div>
-            @if (totalPages > 1)
-            {
-                <ul class="pagination justify-content-end col">
-                    <li class="page-item @((currentPage == 1) ? "disabled" : "")">
-                        <a onclick="event.preventDefault(); setCurrentPage('@(currentPage-1)')" class="page-link link-paging" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-
-                    @if (currentPage > 3)
-                    {
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                    }
-
-                    @for (int pageIndex = startPage; pageIndex <= endPage; pageIndex++)
-                    {
-                        <li class="page-item @(pageIndex == currentPage ? "link-active" : "")">
-                            <a onclick="event.preventDefault(); setCurrentPage('@pageIndex')" class="page-link link-paging" href="#">@pageIndex</a>
+            <div class="row d-flex justify-content-center align-items-center mt-3">
+                <div class="col d-flex flex-row">
+                    <div class="center">
+                        <span class="fst-italic ">Show <strong>@startIndex - @endIndex</strong> in total of <strong> @totalRecord</strong> questions</span>
+                    </div>
+                </div>
+                @if (totalPages > 1)
+                {
+                    <ul class="pagination justify-content-end col">
+                        <li class="page-item @((currentPage == 1) ? "disabled" : "")">
+                            <a onclick="event.preventDefault(); setCurrentPage('@(currentPage-1)')" class="page-link link-paging" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
-                    }
 
-                    @if (currentPage < Math.Ceiling(totalRecord / 10.0) - 2)
-                    {
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                    }
+                        @if (currentPage > 3)
+                        {
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        }
 
-                    <li class="page-item @((currentPage == totalPages) ? "disabled" : "")">
-                        <a onclick="event.preventDefault(); setCurrentPage('@(currentPage + 1)')" class="page-link link-paging" href="#">Next</a>
-                    </li>
-                </ul>
-            }
-        </div>
+                        @for (int pageIndex = startPage; pageIndex <= endPage; pageIndex++)
+                        {
+                            <li class="page-item @(pageIndex == currentPage ? "link-active" : "")">
+                                <a onclick="event.preventDefault(); setCurrentPage('@pageIndex')" class="page-link link-paging" href="#">@pageIndex</a>
+                            </li>
+                        }
+
+                        @if (currentPage < Math.Ceiling(totalRecord / 10.0) - 2)
+                        {
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        }
+
+                        <li class="page-item @((currentPage == totalPages) ? "disabled" : "")">
+                            <a onclick="event.preventDefault(); setCurrentPage('@(currentPage + 1)')" class="page-link link-paging" href="#">Next</a>
+                        </li>
+                    </ul>
+                }
+            </div>
+        }
+        else
+        {
+            <h6 class="fw-bold text-red">* Quiz has no questions please add more</h6>
+        }
         <!-- End Accordion without outline borders -->
     </div>
 </div>

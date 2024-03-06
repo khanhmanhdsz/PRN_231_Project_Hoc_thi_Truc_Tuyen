@@ -70,8 +70,9 @@ namespace WebClient.Areas.Admin.Controllers
                     ToastHelper.ShowInfo(TempData, "Please choose a quiz to edit");
                     return RedirectToAction("Index");
                 }
-
-                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuizById?quizId={quizId}");
+                var subjects = await _clientService.Get<List<SubjectVM>>($"{ApiPaths.Subject}/GetSubjects");
+                ViewData["Subjects"] = subjects;
+                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuiz?quizId={quizId}");
                 if (quizVM == null)
                 {
                     ToastHelper.ShowWarning(TempData, $"Quiz doesn't exist");

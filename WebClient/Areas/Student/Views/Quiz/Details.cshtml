@@ -31,21 +31,21 @@
 </div>
 <section class="min-vh-100">
     <div class="container" data-aos="fade-up">
-        <div class="section-header">
-            <h2 class="mb-2">Taking Quiz</h2>
+        <div class="section-header pb-0">
+            <h2 class="mb-3">Taking Quiz</h2>
         </div>
 
         <div class="section-content">
-            <div class="card p-4">
+            <div class="card p-3">
                 <div class="row">
                     <div class="row text-center mb-3">
+                        <a class="fw-bold" asp-area="Student" asp-controller="Subject" asp-action="Details" asp-route-subjectId="@quiz.SubjectId">@quiz?.Subject?.SubjectName</a>
                         <span class="fw-bold">@quiz.Title</span>
                         <span class="fst-italic">@quiz.Description</span>
-                        <a>@quiz?.Subject?.SubjectName</a>
 
-                        <div>
+                        <div class="mt-1">
                             <i class="bi bi-calendar-event"></i>
-                            <span>@DateTime.Now</span>
+                            <span>@DateTime.Now.ToString("dd/MM/yyyy")</span>
                         </div>
                     </div>
                     <form asp-area="Student" asp-controller="Quiz" asp-action="SubmitQuiz" method="post">

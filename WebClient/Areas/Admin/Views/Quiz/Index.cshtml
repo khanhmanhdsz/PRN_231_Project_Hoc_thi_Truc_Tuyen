@@ -77,7 +77,9 @@
                                 @quiz.Duration minutes
                             </td>
                             <td>
-                                @quiz?.Subject?.SubjectName
+                                <a class="link-underline" asp-area="Admin" asp-controller="Subject" asp-action="Details" asp-route-subjectId="@quiz.Subject.SubjectId">
+                                    <span>  @quiz?.Subject?.SubjectName</span>
+                                </a>
                             </td>
                             <td>@quiz.Description</td>
                         </tr>
@@ -88,7 +90,7 @@
         </div>
         <div class="row d-flex justify-content-center align-content-center mt-3">
             <div class="col">
-                <span class="fst-italic ">Show <strong>@startIndex - @endIndex</strong> in total of <strong> @totalRecord</strong> subjects </span>
+                <span class="fst-italic ">Show <strong>@startIndex - @endIndex</strong> in total of <strong> @totalRecord</strong> quizzes </span>
             </div>
             @if (totalPages > 1)
             {

@@ -54,13 +54,16 @@ namespace WebClient.Areas.Student.Controllers
                 var subject = await _clientService.Get<SubjectVM>(apiPath);
 
                 ViewData["Subject"] = subject;
-                PropertyLogger.LogAllProperties(subject);  
+                PropertyLogger.LogAllProperties(subject);
+             
                 var response = await _clientService.Post<QuizPagingRequest>($"{ApiPaths.Student}/Quiz/GetQuizzes", request);
 
                 if (response == null)
                 {
                     throw new Exception("Server error");
                 }
+
+                response.ItemVMs = response.ItemVMs.Where(x => x.SubjectId == request.SubjectId).ToList();
 
                 return View(response);
             }
