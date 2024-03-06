@@ -35,7 +35,10 @@ namespace Repositories.Subjects
             Subject? subject = new();
             try
             {
-                subject = await _context.Subjects.SingleOrDefaultAsync(s => s.SubjectId == id);
+                subject = await _context.Subjects
+                    .Include(s => s.Quizzes)
+                    .ThenInclude(s => s.Questions)
+                    .SingleOrDefaultAsync(s => s.SubjectId == id);
             }
             catch (Exception e)
             {
@@ -48,7 +51,7 @@ namespace Repositories.Subjects
         {
             try
             {
-                var query = await _context.Subjects.ToListAsync();
+                var query = await _context.Subjects.Include(x => x.Quizzes).ToListAsync();
                 if (!String.IsNullOrEmpty(request.SearchTerm))
                 {
                     query = query.Where(c => c.SubjectName.ToLower().Contains(request.SearchTerm)

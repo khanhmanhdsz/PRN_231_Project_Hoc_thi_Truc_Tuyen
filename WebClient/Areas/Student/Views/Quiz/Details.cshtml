@@ -136,7 +136,7 @@
             fetch(url).then(response => response.text())
                 .then(result => {
                     console.log(result);
-                    window.location.href = "/Student/QuizHistory/Details?id=" + result;
+                    window.location.href = "/Student/QuizHistory/Details?quizId=" + result;
                 });
         } else {
             console.log("User clicked 'Cancel' (No).");

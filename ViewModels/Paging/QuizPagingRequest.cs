@@ -13,5 +13,6 @@ namespace ViewModels.Paging
     {
         public List<QuizVM>? ItemVMs { get; set; }
         public int? SubjectId { get; set; }
+        public int? TotalQuestion { get; set; }
     }
 }

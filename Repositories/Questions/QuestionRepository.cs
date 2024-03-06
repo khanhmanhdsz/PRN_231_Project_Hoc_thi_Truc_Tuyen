@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModels.Questions;
@@ -72,11 +73,14 @@ namespace Repositories.Questions
             try
             {
                 var question = await _context.Questions.SingleOrDefaultAsync(q => q.QuestionId == id);
-                var questionHistory = await _context.QuestionHistories.SingleOrDefaultAsync(q => q.QuestionId == id);
+                var questionHistory = _context.QuestionHistories.Where(q => q.QuestionId == id).ToList();
 
                 if (questionHistory != null)
                 {
-                    _context.QuestionHistories.Remove(questionHistory);
+                    foreach (var item in questionHistory)
+                    {
+                        _context.QuestionHistories.Remove(item);
+                    }
                 }
 
                 if (question != null)
@@ -100,12 +104,28 @@ namespace Repositories.Questions
         {
             try
             {
-                _context.Questions.Update(question);
 
-                if (await _context.SaveChangesAsync() > 0)
+                Question? newQuestion = await _context.Questions.SingleOrDefaultAsync(x => x.QuestionId == question.QuestionId);
+
+                if (newQuestion != null)
                 {
-                    return true;
+
+                    newQuestion.Title = question.Title;
+                    newQuestion.AnswerA = question.AnswerA;
+                    newQuestion.AnswerB = question.AnswerB;
+                    newQuestion.AnswerC = question.AnswerC;
+                    newQuestion.AnswerD = question.AnswerD;
+                    newQuestion.CorrectAnswer = question.CorrectAnswer;
+
+                    _context.Questions.Update(newQuestion);
+
+                    if (await _context.SaveChangesAsync() > 0)
+                    {
+                        return true;
+                    }
                 }
+
+
             }
             catch (Exception ex)
             {

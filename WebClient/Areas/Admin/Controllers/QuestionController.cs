@@ -33,7 +33,7 @@ namespace WebClient.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create(int quizId)
         {
-            var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuizById?quizId={quizId}");
+            var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuiz?quizId={quizId}");
 
             if (quizVM == null)
             {
@@ -50,11 +50,11 @@ namespace WebClient.Areas.Admin.Controllers
         {
             try
             {
-                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuizById?quizId={quizId}");
+                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuiz?quizId={quizId}");
 
                 if (quizVM == null)
                 {
-                    throw new Exception("lease choose a quiz to add new question");
+                    throw new Exception("Please choose a quiz to edit question");
                 }
 
                 ViewData["Quiz"] = quizVM;
@@ -79,13 +79,18 @@ namespace WebClient.Areas.Admin.Controllers
             }
         }
 
+
+
+      
+
         [HttpPost]
         public async Task<IActionResult> Create(QuestionVM questionVM)
         {
             try
             {
-                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuizById?quizId={questionVM.QuizId}");
+                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuiz?quizId={questionVM.QuizId}");
                 ViewData["Quiz"] = quizVM;
+
                 if (ModelState.IsValid)
                 {
                     questionVM = StringHelper.TrimStringProperties<QuestionVM>(questionVM);
@@ -119,13 +124,16 @@ namespace WebClient.Areas.Admin.Controllers
         {
             try
             {
+                var quizVM = await _clientService.Get<QuizVM>($"{ApiPaths.Admin}/Quiz/GetQuiz?quizId={questionVM.QuizId}");
+                ViewData["Quiz"] = quizVM;
+
                 if (ModelState.IsValid)
                 {
                     questionVM = StringHelper.TrimStringProperties<QuestionVM>(questionVM);
                     var response = await _clientService.Put<ResponseVM>($"{ApiPaths.Admin}/Question/UpdateQuestion", questionVM);
                     if (response == null)
                     {
-                        throw new Exception("Update failed");
+                        throw new Exception("Update failed!!!");
                     }
 
                     if (!response.Status)
@@ -207,6 +215,8 @@ namespace WebClient.Areas.Admin.Controllers
         {
             return View();
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> ExportFailedRecordsToFile()

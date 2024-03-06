@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Quizzes;
 
 namespace ViewModels.Subjects
 {
@@ -20,6 +21,6 @@ namespace ViewModels.Subjects
         [StringLength(500)]
         public string Description { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
-        public List<Quiz>? Quizzes { get; set; }
+        public List<QuizVM>? Quizzes { get; set; }
     }
 }

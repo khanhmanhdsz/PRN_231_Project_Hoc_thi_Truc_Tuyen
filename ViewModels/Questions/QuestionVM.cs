@@ -14,7 +14,7 @@ namespace ViewModels.Questions
         public int? QuestionId { get; set; }
 
         [Required(ErrorMessage = "* Please enter question title")]
-        [StringLength(100)]
+        [StringLength(300)]
         public string Title { get; set; } = string.Empty;
         public string CorrectAnswer { get; set; } = string.Empty;
 

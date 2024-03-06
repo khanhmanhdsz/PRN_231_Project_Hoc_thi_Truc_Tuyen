@@ -29,7 +29,8 @@ namespace WebApi.Controllers.Admin
         {
             try
             {
-                SubjectPagingRequest response = await _repository.GetSubjects(request);
+                SubjectPagingRequest response = await _repository
+                    .GetSubjects(request);
 
                 if (response != null)
                 {

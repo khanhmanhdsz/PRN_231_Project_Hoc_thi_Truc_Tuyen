@@ -91,6 +91,8 @@ namespace WebApi.Controllers.Admin
                     return NotFound();
                 }
 
+                Console.WriteLine("question id: " + question.QuestionId);
+
                 QuestionVM questionVM = _mapper.Map<QuestionVM>(question);
                 return Ok(questionVM);
             }

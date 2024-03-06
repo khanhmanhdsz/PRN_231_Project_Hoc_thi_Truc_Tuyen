@@ -278,8 +278,8 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), "882ea332-2fb7-40e7-b161-ba911696cd21", "Admin", "ADMIN" },
-                    { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), "9c4967a0-1795-41c0-9900-7efebb3d4290", "Student", "STUDENT" }
+                    { new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"), "db2f98bd-596c-494b-b24a-f62b158d6e62", "Admin", "ADMIN" },
+                    { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), "c2ec444e-2409-47e1-9139-71eb5030b8c4", "Student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -287,9 +287,15 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Fullname", "IsAccountActive", "JoinedDate", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "e4b27caa-345a-47f8-9fb6-71557c57332a", "lamnt@gmail.com", true, "Nguyen Thanh Lam", true, new DateTime(2024, 3, 6, 1, 11, 30, 640, DateTimeKind.Local).AddTicks(2325), false, null, "LAMNT@GMAIL.COM", "LAMNT", "lamnt", "AQAAAAEAACcQAAAAEOAZl8u+twuqLXRoKDGFNqY2B3whQCyTg/5luetD3TExxnVeWQtINp0sh0IsYAqdcQ==", null, false, "19678183-7551-4c6a-97e5-01e7c906b290", false, "lamnt" },
-                    { new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"), 0, "1143c4ef-7744-4952-8395-1848283859e2", "admin@gmail.com", true, "Admin", true, new DateTime(2024, 3, 6, 1, 11, 30, 638, DateTimeKind.Local).AddTicks(9457), false, null, "ADMIN@GMAIL.COM", "ICPDPHN", "admin", "AQAAAAEAACcQAAAAEO6Z0/b1+/MgzH7bbYF5mvjDeCs6f9ws8g6QHG8nQSykYpcgvDpHNgARyS6ffzcqow==", null, false, "a1661024-c874-4914-afaf-adeea32dc487", false, "admin" }
+                    { new Guid("34dd158a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "af391756-e0e0-4aeb-9e18-a73879ca10ce", "thanhdc@gmail.com", true, "Dinh Cong Thanh", true, new DateTime(2024, 3, 7, 0, 3, 6, 429, DateTimeKind.Local).AddTicks(5756), false, null, "THANHDC@GMAIL.COM", "THANHDC", "thanhdc", "AQAAAAEAACcQAAAAEGfTg5/kir1s/8AmXmd2S65qnZUa2y0ChLkMTK/y7KGqAclHwUf0rTx6TsA7FxPBuQ==", null, false, "207ad11a-488b-4d42-8c63-f14f38f19209", false, "thanhdc" },
+                    { new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"), 0, "35a4ed7b-070d-4fd4-bfbe-206cd223bf34", "ductv@gmail.com", true, "Tran Van Duc", true, new DateTime(2024, 3, 7, 0, 3, 6, 428, DateTimeKind.Local).AddTicks(3250), false, null, "DUCTV@GMAIL.COM", "DUCTV", "ductv", "AQAAAAEAACcQAAAAEElZd1Ub1adAZZ4jbISFxdYX26jbshyIgbWeaGsc4Fx8o+YPBhbfKBH2g3CX77Yr3A==", null, false, "bb7e4cc9-a3a7-48c4-abe9-6f797986f4b6", false, "ductv" },
+                    { new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"), 0, "63c9120b-e590-4c9f-a591-0ee4938c46aa", "admin@gmail.com", true, "Admin", true, new DateTime(2024, 3, 7, 0, 3, 6, 427, DateTimeKind.Local).AddTicks(831), false, null, "ADMIN@GMAIL.COM", "ICPDPHN", "admin", "AQAAAAEAACcQAAAAEMj2XwD6tB1kuY64toOF3zRy0v0SCaIG65x28oxPppQzNCSprTAJ8hOixa4T5b8EtQ==", null, false, "5c362563-4d97-47c8-a0e6-86da71bb35c4", false, "admin" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"), new Guid("34dd158a-6b96-4149-a3b4-5d1b5cc374a3") });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

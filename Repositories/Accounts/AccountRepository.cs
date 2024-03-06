@@ -145,7 +145,14 @@ namespace Repositories.Accounts
             var password = PasswordHepler.GenerateAccountPassword(10);
             try
             {
+                Account existing = _context.Accounts.SingleOrDefault(x => x.Email == account.Email);
+
+                if (existing != null)
+                {
+                    throw new Exception("Account is already exist");
+                }
                 account.Password = password;
+                account.IsAccountActive = true;
                 // Insert the account into the database
                 var result = await userManager.CreateAsync(account, password);
 
@@ -210,7 +217,7 @@ namespace Repositories.Accounts
 
                 // Update account properties with values from the request
                 account.Fullname = request.Fullname;
-
+                account.IsAccountActive = request.IsAccountActive;
                 //account.isAccountActive = request.IsAccountActive ?? false;
 
                 // Debug: Retrieve the user by email 

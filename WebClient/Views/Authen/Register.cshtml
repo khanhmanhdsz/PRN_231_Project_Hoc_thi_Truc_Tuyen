@@ -26,19 +26,30 @@
                             </div>
 
                             <form id="login-form" method="POST" asp-controller="Authen" asp-action="Register" class="row">
+                                <span class="text-red mt-1 text-center">Password will send to your email!</span>
                                 <div class="col-12 mb-2">
                                     <span class="fw-bold">Fullname</span>
                                     <input type="text" name="Fullname" placeholder="Enter your fullname" class="form-control" />
+                                    <span asp-validation-for="Fullname" class="text-danger"></span>
+
                                 </div>
                                 <div class="col-12 mb-2">
                                     <span class="fw-bold">Email</span>
                                     <input type="text" name="Email" placeholder="Enter your email" class="form-control" />
-                                    <span class="text-red mt-1">* Password will send to your email after register!</span>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+
                                 </div>
                                 <div class="col-12 mt-2 mb-2">
-                                    <button id="btn-google_login" class="btn btn-primary bg-orange text-white w-100" type="submit">
-                                        <i class="bi bi-arrow-right"></i>
-                                        <span>Register</span>
+                                    <button onclick="showSpinner();" type="submit" class="btn btn-primary w-100">
+                                        <span id="spinner" class="visually-hidden">
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Loading...</span>
+                                            <span>Processing</span>
+                                        </span>
+                                        <span id="btn-content">
+                                            <i class="bi bi-arrow-right"></i>
+                                            <span>Register</span>
+                                        </span>
                                     </button>
                                 </div>
                                 <div class="d-flex justify-content-between">

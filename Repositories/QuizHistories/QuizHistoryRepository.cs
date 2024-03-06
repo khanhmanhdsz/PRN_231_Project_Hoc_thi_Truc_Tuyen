@@ -37,6 +37,12 @@ namespace Repositories.QuizHistories
                     query = query.Where(x => x.Account.Email.Equals(request.Email)).ToList();
                 }
 
+                if (!String.IsNullOrEmpty(request.SearchTerm))
+                {
+                    query = query.Where(x => x.Quiz.Title.Equals(request.SearchTerm)).ToList();
+                }
+
+
                 //Set totoal pages for paging
                 request.TotalRecord = query.Count();
                 request.TotalPages = (int)Math.Ceiling(request.TotalRecord / (double)request.PageSize);

@@ -107,19 +107,19 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("b8c777a9-55b9-4b3d-860a-d7b56e4c24b7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1143c4ef-7744-4952-8395-1848283859e2",
+                            ConcurrencyStamp = "63c9120b-e590-4c9f-a591-0ee4938c46aa",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             Fullname = "Admin",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 6, 1, 11, 30, 638, DateTimeKind.Local).AddTicks(9457),
+                            JoinedDate = new DateTime(2024, 3, 7, 0, 3, 6, 427, DateTimeKind.Local).AddTicks(831),
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ICPDPHN",
                             Password = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO6Z0/b1+/MgzH7bbYF5mvjDeCs6f9ws8g6QHG8nQSykYpcgvDpHNgARyS6ffzcqow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMj2XwD6tB1kuY64toOF3zRy0v0SCaIG65x28oxPppQzNCSprTAJ8hOixa4T5b8EtQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a1661024-c874-4914-afaf-adeea32dc487",
+                            SecurityStamp = "5c362563-4d97-47c8-a0e6-86da71bb35c4",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -127,21 +127,41 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e4b27caa-345a-47f8-9fb6-71557c57332a",
-                            Email = "lamnt@gmail.com",
+                            ConcurrencyStamp = "35a4ed7b-070d-4fd4-bfbe-206cd223bf34",
+                            Email = "ductv@gmail.com",
                             EmailConfirmed = true,
-                            Fullname = "Nguyen Thanh Lam",
+                            Fullname = "Tran Van Duc",
                             IsAccountActive = true,
-                            JoinedDate = new DateTime(2024, 3, 6, 1, 11, 30, 640, DateTimeKind.Local).AddTicks(2325),
+                            JoinedDate = new DateTime(2024, 3, 7, 0, 3, 6, 428, DateTimeKind.Local).AddTicks(3250),
                             LockoutEnabled = false,
-                            NormalizedEmail = "LAMNT@GMAIL.COM",
-                            NormalizedUserName = "LAMNT",
-                            Password = "lamnt",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOAZl8u+twuqLXRoKDGFNqY2B3whQCyTg/5luetD3TExxnVeWQtINp0sh0IsYAqdcQ==",
+                            NormalizedEmail = "DUCTV@GMAIL.COM",
+                            NormalizedUserName = "DUCTV",
+                            Password = "ductv",
+                            PasswordHash = "AQAAAAEAACcQAAAAEElZd1Ub1adAZZ4jbISFxdYX26jbshyIgbWeaGsc4Fx8o+YPBhbfKBH2g3CX77Yr3A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "19678183-7551-4c6a-97e5-01e7c906b290",
+                            SecurityStamp = "bb7e4cc9-a3a7-48c4-abe9-6f797986f4b6",
                             TwoFactorEnabled = false,
-                            UserName = "lamnt"
+                            UserName = "ductv"
+                        },
+                        new
+                        {
+                            Id = new Guid("34dd158a-6b96-4149-a3b4-5d1b5cc374a3"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "af391756-e0e0-4aeb-9e18-a73879ca10ce",
+                            Email = "thanhdc@gmail.com",
+                            EmailConfirmed = true,
+                            Fullname = "Dinh Cong Thanh",
+                            IsAccountActive = true,
+                            JoinedDate = new DateTime(2024, 3, 7, 0, 3, 6, 429, DateTimeKind.Local).AddTicks(5756),
+                            LockoutEnabled = false,
+                            NormalizedEmail = "THANHDC@GMAIL.COM",
+                            NormalizedUserName = "THANHDC",
+                            Password = "thanhdc",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGfTg5/kir1s/8AmXmd2S65qnZUa2y0ChLkMTK/y7KGqAclHwUf0rTx6TsA7FxPBuQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "207ad11a-488b-4d42-8c63-f14f38f19209",
+                            TwoFactorEnabled = false,
+                            UserName = "thanhdc"
                         });
                 });
 
@@ -342,14 +362,14 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = new Guid("b8fd818f-63f1-49ee-bec5-f7b66cafbfca"),
-                            ConcurrencyStamp = "882ea332-2fb7-40e7-b161-ba911696cd21",
+                            ConcurrencyStamp = "db2f98bd-596c-494b-b24a-f62b158d6e62",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86"),
-                            ConcurrencyStamp = "9c4967a0-1795-41c0-9900-7efebb3d4290",
+                            ConcurrencyStamp = "c2ec444e-2409-47e1-9139-71eb5030b8c4",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -447,6 +467,11 @@ namespace DataAccess.Migrations
                         new
                         {
                             UserId = new Guid("34fb159a-6b96-4149-a3b4-5d1b5cc374a3"),
+                            RoleId = new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86")
+                        },
+                        new
+                        {
+                            UserId = new Guid("34dd158a-6b96-4149-a3b4-5d1b5cc374a3"),
                             RoleId = new Guid("d2d63c5b-d09b-4828-8322-f18ba103fe86")
                         });
                 });

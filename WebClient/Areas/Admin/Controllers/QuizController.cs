@@ -3,8 +3,10 @@ using Core.Helpers;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using ViewModels;
 using ViewModels.Paging;
+using ViewModels.Questions;
 using ViewModels.Quizzes;
 using ViewModels.Subjects;
 using WebClient.Helpers;
@@ -82,6 +84,22 @@ namespace WebClient.Areas.Admin.Controllers
             {
                 ToastHelper.ShowWarning(TempData, $"Error when updating quiz");
                 return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public async Task<string> RemoveQuestion(int questionId)
+        {
+            try
+            {
+                var response = await _clientService.Get<ResponseVM>($"{ApiPaths.Admin}/Quiz/RemoveQuestion?questionId={questionId}");
+
+                Console.WriteLine(response.Status);
+                return JsonSerializer.Serialize(response);
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
             }
         }
 

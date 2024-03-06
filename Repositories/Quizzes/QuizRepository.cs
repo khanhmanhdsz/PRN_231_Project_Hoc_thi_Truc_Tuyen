@@ -60,7 +60,8 @@ namespace Repositories.Quizzes
         {
             try
             {
-                var quiz = await _context.Quizzes.Include(q => q.Questions).SingleOrDefaultAsync(q => q.QuizId == id);
+                var quiz = await _context.Quizzes.Include(q => q.Questions)
+                    .SingleOrDefaultAsync(q => q.QuizId == id);
                 return quiz;
             }
             catch (Exception e)
@@ -74,7 +75,7 @@ namespace Repositories.Quizzes
         {
             try
             {
-                var query = await _context.Quizzes.Include(q => q.Subject).ToListAsync();
+                var query = await _context.Quizzes.Include(q => q.Subject).Include(q => q.Questions).ToListAsync();
                 if (!String.IsNullOrEmpty(request.SearchTerm))
                 {
                     query = query.Where(c => c.Title.ToLower().Contains(request.SearchTerm)

@@ -40,22 +40,40 @@ namespace DataAccess.Seeding
                 new Account()
                 {
                     Id = Guid.Parse("34FB159A-6B96-4149-A3B4-5D1B5CC374A3"),
-                    UserName = "lamnt",
-                    NormalizedUserName = "LAMNT",
-                    Email = "lamnt@gmail.com",
-                    NormalizedEmail = "LAMNT@GMAIL.COM",
+                    UserName = "ductv",
+                    NormalizedUserName = "DUCTV",
+                    Email = "ductv@gmail.com",
+                    NormalizedEmail = "DUCTV@GMAIL.COM",
                     EmailConfirmed = true,
-                    Password = "lamnt",
-                    PasswordHash = new PasswordHasher<Account>().HashPassword(null, "lamnt"),
+                    Password = "ductv",
+                    PasswordHash = new PasswordHasher<Account>().HashPassword(null, "ductv"),
                     SecurityStamp = Guid.NewGuid().ToString(),
-                    Fullname = "Nguyen Thanh Lam",
+                    Fullname = "Tran Van Duc",
                     IsAccountActive = true,
                     JoinedDate = DateTime.Now
-                });
+                },
+                 new Account()
+                 {
+                     Id = Guid.Parse("34DD158A-6B96-4149-A3B4-5D1B5CC374A3"),
+                     UserName = "thanhdc",
+                     NormalizedUserName = "THANHDC",
+                     Email = "thanhdc@gmail.com",
+                     NormalizedEmail = "THANHDC@GMAIL.COM",
+                     EmailConfirmed = true,
+                     Password = "thanhdc",
+                     PasswordHash = new PasswordHasher<Account>().HashPassword(null, "thanhdc"),
+                     SecurityStamp = Guid.NewGuid().ToString(),
+                     Fullname = "Dinh Cong Thanh",
+                     IsAccountActive = true,
+                     JoinedDate = DateTime.Now
+                 }
+
+                );
 
             modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(
                 new IdentityUserRole<Guid> { UserId = Guid.Parse("B8C777A9-55B9-4B3D-860A-D7B56E4C24B7"), RoleId = Guid.Parse("B8FD818F-63F1-49EE-BEC5-F7B66CAFBFCA") },
-                new IdentityUserRole<Guid> { UserId = Guid.Parse("34FB159A-6B96-4149-A3B4-5D1B5CC374A3"), RoleId = Guid.Parse("D2D63C5B-D09B-4828-8322-F18BA103FE86") }
+                new IdentityUserRole<Guid> { UserId = Guid.Parse("34FB159A-6B96-4149-A3B4-5D1B5CC374A3"), RoleId = Guid.Parse("D2D63C5B-D09B-4828-8322-F18BA103FE86") },
+                new IdentityUserRole<Guid> { UserId = Guid.Parse("34DD158A-6B96-4149-A3B4-5D1B5CC374A3"), RoleId = Guid.Parse("D2D63C5B-D09B-4828-8322-F18BA103FE86") }
                 );
         }
     }

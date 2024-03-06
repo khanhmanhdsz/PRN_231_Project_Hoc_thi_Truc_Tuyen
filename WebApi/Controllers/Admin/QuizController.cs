@@ -9,6 +9,8 @@ using ViewModels;
 using Repositories.Quizzes;
 using ViewModels.Quizzes;
 using ViewModels.Questions;
+using Core.Constants;
+using Repositories.Questions;
 
 namespace WebApi.Controllers.Admin
 {
@@ -18,11 +20,13 @@ namespace WebApi.Controllers.Admin
     public class QuizController : ControllerBase
     {
         private IQuizRepository _repository;
+        private IQuestionRepository _questionRepository;
         private readonly IMapper _mapper;
 
-        public QuizController(IQuizRepository repository, IMapper mapper)
+        public QuizController(IQuizRepository repository, IQuestionRepository questionRepository, IMapper mapper)
         {
             _repository = repository;
+            _questionRepository = questionRepository;
             _mapper = mapper;
         }
 
@@ -66,6 +70,27 @@ namespace WebApi.Controllers.Admin
                 response.QuizVM = _mapper.Map<QuizVM>(response.Quiz);
                 response.Quiz = null;
                 return Ok(response);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetQuiz(int quizId)
+        {
+            try
+            {
+                Quiz quiz = await _repository.GetQuizById(quizId);
+
+                if (quiz == null)
+                {
+                    return NotFound();
+                }
+
+                QuizVM quizVM = _mapper.Map<QuizVM>(quiz);
+                return Ok(quiz);
             }
             catch (Exception)
             {
@@ -135,6 +160,23 @@ namespace WebApi.Controllers.Admin
             {
                 Console.WriteLine($"Error: {ex.ToString()}");
                 return Ok(new ResponseVM() { Status = false, Message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<ResponseVM> RemoveQuestion(int questionId)
+        {
+            try
+            {
+                Console.WriteLine("question: " + questionId);
+
+                var status = await _questionRepository.RemoveQuestion(questionId);
+
+                return new ResponseVM() { Status = status, Message = string.Empty };
+            }
+            catch (Exception ex)
+            {
+                return new ResponseVM();
             }
         }
     }

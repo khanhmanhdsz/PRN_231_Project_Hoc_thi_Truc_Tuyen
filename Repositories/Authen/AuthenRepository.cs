@@ -44,8 +44,8 @@ namespace Repositories.Authen
             try
             {
                 // Find User by Username in database
-                var user = await _context.Accounts.SingleOrDefaultAsync(a => a.Email == request.Email 
-                && a.Password == request.Password
+                var user = await _context.Accounts.SingleOrDefaultAsync(a => a.Email.Equals(request.Email)
+                && a.Password.Equals(request.Password)
                 && a.IsAccountActive == true);
 
                 if (user != null)

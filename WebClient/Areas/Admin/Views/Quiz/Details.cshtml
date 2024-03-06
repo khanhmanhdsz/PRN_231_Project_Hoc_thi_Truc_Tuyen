@@ -68,13 +68,10 @@
             @foreach (var question in questions)
             {
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-heading-@question.QuestionId">
-                        <button class="accordion-button collapsed"
-                            type="button">
-                            <span>@(index++)</span>
-                            <span>. @question.Title</span>
-                        </button>
-                    </h2>
+                    <h6 class="accordion-header fw-bold px-3 pt-3" id="flush-heading-@question.QuestionId">
+                        <span>@(index++)</span>
+                        <span>. @question.Title</span>
+                    </h6>
                     <div id="flush-@question.QuestionId" class="accordion-collapse"
                      aria-labelledby="flush-heading-@question.QuestionId"
                      data-bs-parent="#accordionFlush">
@@ -101,11 +98,11 @@
                                 <span class="text-red">Correct answer: @question.CorrectAnswer</span>
                             </div>
                             <div class="mt-2">
-                                <a asp-controller="Question" asp-action="Delete" asp-route-quizId="@Model.QuizId" class="btn btn-red">
+                                <button onclick="onRemoveQuestion('@Model.QuizId', '@question.QuestionId',  '@index')" type="button" class="btn btn-red">
                                     <i class="bi bi-trash"></i>
                                     <span>Remove</span>
-                                </a>
-                                <a asp-controller="Question" asp-action="Update" asp-route-quizId="@Model.QuizId" class="btn btn-primary ms-2">
+                                </button>
+                                <a asp-controller="Question" asp-action="Update" asp-route-quizId="@Model.QuizId" asp-route-questionId="@question.QuestionId" class="btn btn-primary ms-2">
                                     <i class="bi bi-pencil"></i>
                                     <span>Edit</span>
                                 </a>
@@ -204,3 +201,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    function onRemoveQuestion(quizId, questionId, index) {
+        var userResponse = window.confirm("Are you sure you want to remove the selected question " + index + "?");
+
+        // Check the user's response
+        if (userResponse) {
+
+            const url = "RemoveQuestion?questionId=" + questionId;
+
+            fetch(url).then(response => response.text())
+                .then(result => {
+                    console.log(result);
+                    console.log("User clicked 'OK' (Yes).");
+                    window.location.reload();
+                });
+        } else {
+            console.log("User clicked 'Cancel' (No).");
+        }
+    }
+</script>

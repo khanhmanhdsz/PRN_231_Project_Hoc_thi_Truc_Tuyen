@@ -54,7 +54,7 @@ namespace WebClient.Controllers
                 if (ModelState.IsValid)
                 {
                     request.StartDate = DateTime.Now;
-                    var apiPath = $"{ApiPaths.Admin}/Authen/Register";
+                    var apiPath = $"{ApiPaths.Authen}/Register";
                     var response = await _clientService.Post<ResponseVM>(apiPath, request);
                     if (response == null)
                     {
@@ -66,7 +66,7 @@ namespace WebClient.Controllers
                     }
                     ToastHelper.ShowSuccess(TempData, "Register successful");
                     ToastHelper.ShowSuccess(TempData, "Password has been sent to your email");
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(SignIn));
                 }
             }
             catch (Exception ex)
@@ -155,8 +155,8 @@ namespace WebClient.Controllers
             catch (Exception ex)
             {
                 ToastHelper.ShowError(TempData, ex.Message);
-                return RedirectToAction(nameof(SignIn));
             }
+            return View(loginRequest);
         }
 
 
