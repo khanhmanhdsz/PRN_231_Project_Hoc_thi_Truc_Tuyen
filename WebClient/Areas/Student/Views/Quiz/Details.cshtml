@@ -85,7 +85,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input onchange="onSelectOption('@index++', 'D')" class="form-check-input" type="radio" name="@question.QuestionId"
+                                                    <input onchange="onSelectOption('@index', 'D')" class="form-check-input" type="radio" name="@question.QuestionId"
                                                        id="@(index + 2000)">
                                                     <label class="form-check-label">
                                                         @question.AnswerD
@@ -93,6 +93,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <span class="d-none">@(index++)</span>
                                     </div>
                                 </div>
                             }
